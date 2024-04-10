@@ -1,0 +1,33 @@
+.imageCircle {
+  width: 250px;
+  height: 200px;
+  border-radius: 50%;
+  margin-top: 40px;
+  margin-left: 40px;
+}
+.imageCircle2 {
+  width: 200px;
+  height: 170px;
+  border-radius: 50%;
+  margin-top: 70px;
+  margin-left: 40px;
+}
+.title {
+  font-size: 20px;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  font-weight: 900;
+  text-transform: capitalize;
+}
+.title2 {
+  font-size: 24px;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  font-weight: 1000;
+  text-transform: capitalize;
+  margin-top: 10px;
+}
+.slideshow {
+  height: 500px;
+}
+

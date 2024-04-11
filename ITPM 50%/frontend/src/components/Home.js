@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import SlideShow from "./slideShow";
 import Cards from "./cards";
 import Footer from "./footer";
+import CardDeals from "./CardDeals";
 
 export default class Home extends Component {
   render() {
@@ -10,7 +11,9 @@ export default class Home extends Component {
       <>
         <NavBar />
         <SlideShow />
+
         <Cards />
+        <CardDeals />
         <Footer />
       </>
     );

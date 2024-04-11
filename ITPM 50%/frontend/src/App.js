@@ -66,6 +66,8 @@ import ItemHome from "./screen/shop/ItemTable";
 import ItemView from "./screen/item/ItemView";
 import HomePage from "./components/Home";
 
+import CardDeals from "./components/CardDeals";
+
 /**
  * main application function
  * @returns App
@@ -76,6 +78,7 @@ function App() {
       <main className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/slider" element={<CardDeals />} />
           <Route path="/customer" element={<CustomerDashBoard />} />
           <Route path="/admin_dashboard" element={<AdminDashboard />} />
           <Route path="/shop_dashboard" element={<PermenentShopHome />} />

@@ -30,4 +30,16 @@
 .slideshow {
   height: 500px;
 }
-
+.btncontainer {
+  padding-left: 18%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.btns {
+  width: 80%;
+  height: 50px;
+  background-color:transparent;
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: black;
+}

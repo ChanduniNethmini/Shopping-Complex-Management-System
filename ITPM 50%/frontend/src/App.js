@@ -67,6 +67,9 @@ import ItemView from "./screen/item/ItemView";
 import HomePage from "./components/Home";
 
 import CardDeals from "./components/CardDeals";
+import CreateOrders from "./screen/order-Management/CreateOrder";
+import HomeOrder from "./screen/order-Management/HomeOrder";
+import EditOrder from "./screen/order-Management/EditOrder";
 
 /**
  * main application function
@@ -82,6 +85,9 @@ function App() {
           <Route path="/customer" element={<CustomerDashBoard />} />
           <Route path="/admin_dashboard" element={<AdminDashboard />} />
           <Route path="/shop_dashboard" element={<PermenentShopHome />} />
+          <Route path="/order" element={<CreateOrders />} />
+          <Route path="/order/home" element={<HomeOrder />} />
+          <Route path="/order/update/:id" element={<EditOrder />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

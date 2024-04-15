@@ -6,7 +6,9 @@ export default class NavBar extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-9">Innovative Trade Plaza Mall</div>
+          <div className="col-9" style={{ letterSpacing: "12px" }}>
+            Innovative Trade Plaza Mall
+          </div>
           <div className="col-3">Need Help? Call Us: (+94) 11111111</div>
           <hr />
         </div>
@@ -14,7 +16,7 @@ export default class NavBar extends Component {
         <NavBar2 />
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="#">
-            Navbar w/ text
+            Home
           </a>
           <button
             class="navbar-toggler"
@@ -30,32 +32,61 @@ export default class NavBar extends Component {
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#">
-                  Home <span class="sr-only">(current)</span>
+                <a class="nav-link" href="/permenentshop_home">
+                  Stores
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/temporyshop_home">
+                  Stalls
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  Features
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Pricing
+                  Book a stall
                 </a>
               </li>
               <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Categories
+                </a>
+                <div
+                  class="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <a class="dropdown-item" href="/shop">
+                    Foods
+                  </a>
+                  <a class="dropdown-item" href="/shop">
+                    Stationary
+                  </a>
+                  <a class="dropdown-item" href="/shop">
+                    Clothes
+                  </a>
+                  <a class="dropdown-item" href="/shop">
+                    Electronics
+                  </a>
+                </div>
+              </li>
             </ul>
-            <span class="navbar-text">Navbar text with an inline element</span>
+            <span class="navbar-text">
+              {" "}
+              <a class="dropdown-item" href="/login">
+                Login
+              </a>
+            </span>
+            <span class="navbar-text">
+              <a class="dropdown-item" href="/register">
+                Register
+              </a>
+            </span>
           </div>
         </nav>
       </div>

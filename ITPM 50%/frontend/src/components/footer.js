@@ -8,7 +8,7 @@ export default class Footer extends Component {
           <div class="text-center p-3" style={{ backgroundColor: "black" }}>
             © 2024 Copyright:
             <a class="text-white" href="https://mdbootstrap.com/">
-              ESHOP.com
+              Innovative Trade Plaza Mall
             </a>
           </div>
         </footer>

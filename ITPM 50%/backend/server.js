@@ -11,6 +11,7 @@ const Item = require("./routes/item-route");
 const ShopOwner = require("./routes/shopOwner-route");
 const StallSeeker = require("./routes/stallSeeker-route");
 const TemporaryShop = require("./routes/temporaryShop-route");
+const orderRoutes = require("./routes/order.route");
 
 dotenv.config();
 const app = express();
@@ -21,17 +22,17 @@ app.use(express.json());
 const PORT = process.env.PORT || 8070;
 const MONGODB_URI = process.env.MONGODB_URI;
 
-
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true },)
-    .then(() => {
-        console.log('Connected to MongoDB Atlas');
-    })
-    .catch((err) => {
-        console.error('Error connecting to MongoDB Atlas:', err);
-    });
+mongoose
+  .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("Connected to MongoDB Atlas");
+  })
+  .catch((err) => {
+    console.error("Error connecting to MongoDB Atlas:", err);
+  });
 
 mongoose.connection.once("open", () => {
-    console.log("Database Synced");
+  console.log("Database Synced");
 });
 
 app.use("/api/v0/cart", Cart);
@@ -42,7 +43,8 @@ app.use("/api/v0/item", Item);
 app.use("/api/v0/shopOwner", ShopOwner);
 app.use("/api/v0/stallSeeker", StallSeeker);
 app.use("/api/v0/temporaryShop", TemporaryShop);
+app.use(orderRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on PORT ${PORT}`);
+  console.log(`Server is running on PORT ${PORT}`);
 });

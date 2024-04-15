@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./commom.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import {
   Typography,
   Grid,
@@ -12,8 +13,6 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { API_URL } from "../constants/constants";
-import shopImage from "../images/shop.png";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -94,7 +93,12 @@ export default function CardDeals() {
         </div>
         <div className="btncontainer">
           <button type="button" className="btns">
-            Browse More Products
+            <Link
+              to="/shop"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Browse More Products
+            </Link>
           </button>
         </div>
       </div>

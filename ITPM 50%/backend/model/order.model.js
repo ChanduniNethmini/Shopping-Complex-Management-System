@@ -28,10 +28,6 @@ const orderSchema = new mongoose.Schema({
     type: String,
     default: "Pending",
   },
-  price: {
-    type: ObjectId,
-    ref: "cart",
-  },
   cartTotal: {
     type: String,
   },

@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from "react-use-cart";
 
 /*
   Dashboards
@@ -20,7 +21,7 @@ import Profile from "./screen/customer/profile";
 /*
   shop pages 
 */
-import ShopHomePage from "./screen/shop/Shop";
+import ShopHomePage from "./screen/cart/HomeCart";
 
 /*
   shop pages
@@ -78,60 +79,65 @@ import EditOrder from "./screen/order-Management/EditOrder";
 function App() {
   return (
     <BrowserRouter>
-      <main className="App">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/slider" element={<CardDeals />} />
-          <Route path="/customer" element={<CustomerDashBoard />} />
-          <Route path="/admin_dashboard" element={<AdminDashboard />} />
-          <Route path="/shop_dashboard" element={<PermenentShopHome />} />
-          <Route path="/order" element={<CreateOrders />} />
-          <Route path="/order/home" element={<HomeOrder />} />
-          <Route path="/order/update/:id" element={<EditOrder />} />
+      <CartProvider>
+        <main className="App">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/slider" element={<CardDeals />} />
+            <Route path="/customer" element={<CustomerDashBoard />} />
+            <Route path="/admin_dashboard" element={<AdminDashboard />} />
+            <Route path="/shop_dashboard" element={<PermenentShopHome />} />
+            <Route path="/order" element={<CreateOrders />} />
+            <Route path="/order/home" element={<HomeOrder />} />
+            <Route path="/order/update/:id" element={<EditOrder />} />
 
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
 
-          <Route path="/shop" element={<ShopHomePage />} />
+            <Route path="/shop" element={<ShopHomePage />} />
 
-          <Route path="/permenentshop" element={<PermenentShopHome />} />
-          <Route
-            path="/permenentshop_table"
-            element={<PermanentShopDashboard />}
-          />
-          <Route
-            path="/permenentshop_home"
-            element={<PermanentShopHomePage />}
-          />
+            <Route path="/permenentshop" element={<PermenentShopHome />} />
+            <Route
+              path="/permenentshop_table"
+              element={<PermanentShopDashboard />}
+            />
+            <Route
+              path="/permenentshop_home"
+              element={<PermanentShopHomePage />}
+            />
 
-          <Route
-            path="/temporyshop_table"
-            element={<TemporaryShopDashboard />}
-          />
-          <Route path="/temporyshop_home" element={<TemporaryShopHomePage />} />
+            <Route
+              path="/temporyshop_table"
+              element={<TemporaryShopDashboard />}
+            />
+            <Route
+              path="/temporyshop_home"
+              element={<TemporaryShopHomePage />}
+            />
 
-          <Route path="/seller_table" element={<SellerTable />} />
-          <Route path="/add_seller" element={<SellerForm />} />
+            <Route path="/seller_table" element={<SellerTable />} />
+            <Route path="/add_seller" element={<SellerForm />} />
 
-          <Route path="/stallseeker_table" element={<StallSeekerTable />} />
+            <Route path="/stallseeker_table" element={<StallSeekerTable />} />
 
-          <Route
-            path="/event_table"
-            element={<InteractiveMallEventDashboard />}
-          />
-          <Route
-            path="/event_home"
-            element={<InteractiveMallEventHomePage />}
-          />
+            <Route
+              path="/event_table"
+              element={<InteractiveMallEventDashboard />}
+            />
+            <Route
+              path="/event_home"
+              element={<InteractiveMallEventHomePage />}
+            />
 
-          <Route path="/item_table" element={<ItemHome />} />
+            <Route path="/item_table" element={<ItemHome />} />
 
-          <Route path="/item/:id" element={<ItemView />} />
+            <Route path="/item/:id" element={<ItemView />} />
 
-          <Route path="/cart" element={<CartPage />} />
-        </Routes>
-      </main>
+            <Route path="/cart" element={<CartPage />} />
+          </Routes>
+        </main>
+      </CartProvider>
     </BrowserRouter>
   );
 }

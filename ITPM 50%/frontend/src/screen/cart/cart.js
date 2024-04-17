@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useCart } from "react-use-cart";
 import { API_URL } from "../../constants/constants";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const {
@@ -23,6 +24,17 @@ const CartPage = () => {
     return total.toFixed(2);
   };
   const cartTotal = calculateCartTotal(items);
+
+  const cartData = {
+    items: items,
+    cartTotal: cartTotal,
+  };
+
+  useEffect(() => {
+    localStorage.setItem("cartData", JSON.stringify(cartData));
+    console.log(cartData);
+  }, [cartData]);
+
   return (
     <div style={{ height: "700px" }}>
       <section className="py-4 container">
@@ -104,9 +116,9 @@ const CartPage = () => {
               Clear Cart
             </button>
             <br />
-            <button className="btn btn-primary m-2">
+            {/* <button className="btn btn-primary m-2">
               <a
-                href="/order/create"
+                href="/order"
                 style={{
                   textDecoration: "none",
                   color: "white",
@@ -115,6 +127,22 @@ const CartPage = () => {
               >
                 Proceed to Checkout
               </a>
+            </button> */}
+            {/* Rest of your component JSX */}
+            <button className="btn btn-primary m-2">
+              <Link
+                to={{
+                  pathname: "/order",
+                  state: { cartData: cartData },
+                }}
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  fontSize: "18px",
+                }}
+              >
+                Proceed to Checkout
+              </Link>
             </button>
           </div>
         </div>

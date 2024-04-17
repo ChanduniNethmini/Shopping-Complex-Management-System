@@ -3,6 +3,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import insert from "../../images/brands.gif";
 import "./myStyles.css";
+import { useLocation } from "react-router-dom";
 
 export default class CreateOrders extends Component {
   //intialization
@@ -17,20 +18,25 @@ export default class CreateOrders extends Component {
       contactNo: "",
       orderDate: "",
       status: "Pending",
-      // cartTotal: "",
-      //   price: "",
     };
   }
+  componentDidMount() {
+    const cartData = JSON.parse(localStorage.getItem("cartData"));
+    const cartTotal = this.calculateCartTotal(cartData.items);
+    console.log(cartTotal);
 
-  //   componentDidMount() {
-  //     const cart = localStorage.getItem("react-use-cart");
-  //     const cartdata = JSON.parse(cart);
-  //     console.log(cartdata.cartTotal);
+    this.setState({
+      cartTotal: cartTotal,
+    });
+  }
 
-  //     this.setState({
-  //       cartTotal: cartdata.cartTotal,
-  //     });
-  //   }
+  calculateCartTotal(items) {
+    let total = 0;
+    items.forEach((item) => {
+      total += parseFloat(item.itemPrice) * item.quantity;
+    });
+    return total.toFixed(2);
+  }
 
   handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -300,7 +306,7 @@ export default class CreateOrders extends Component {
                       </label>
                       <br />
                       <label style={{ marginBottom: "5px" }} className="topic">
-                        {/* <b>Order Total: {this.state.price}</b> */}
+                        <b>Order Total: {this.state.cartTotal}</b>
                       </label>
                       <br />
 

@@ -71,6 +71,7 @@ import CardDeals from "./components/CardDeals";
 import CreateOrders from "./screen/order-Management/CreateOrder";
 import HomeOrder from "./screen/order-Management/HomeOrder";
 import EditOrder from "./screen/order-Management/EditOrder";
+import OrderPost from "./screen/order-Management/OrderPost";
 
 /**
  * main application function
@@ -90,6 +91,7 @@ function App() {
             <Route path="/order" element={<CreateOrders />} />
             <Route path="/order/home" element={<HomeOrder />} />
             <Route path="/order/update/:id" element={<EditOrder />} />
+            <Route path="/order/post/:id" element={<OrderPost />} />
 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

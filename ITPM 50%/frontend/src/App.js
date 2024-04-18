@@ -72,6 +72,7 @@ import CreateOrders from "./screen/order-Management/CreateOrder";
 import HomeOrder from "./screen/order-Management/HomeOrder";
 import EditOrder from "./screen/order-Management/EditOrder";
 import OrderPost from "./screen/order-Management/OrderPost";
+import OrderReport from "./screen/order-Management/OrderReport";
 
 /**
  * main application function
@@ -92,6 +93,7 @@ function App() {
             <Route path="/order/home" element={<HomeOrder />} />
             <Route path="/order/update/:id" element={<EditOrder />} />
             <Route path="/order/post/:id" element={<OrderPost />} />
+            <Route path="/order/report" element={<OrderReport />} />
 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

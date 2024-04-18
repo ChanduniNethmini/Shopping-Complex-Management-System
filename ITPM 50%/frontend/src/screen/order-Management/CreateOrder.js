@@ -58,7 +58,6 @@ export default class CreateOrders extends Component {
       contactNo,
       orderDate,
       status,
-      //   price,
       cartTotal,
     } = this.state;
 
@@ -70,7 +69,6 @@ export default class CreateOrders extends Component {
       contactNo: contactNo,
       orderDate: orderDate,
       status: status,
-      //   price: price,
       cartTotal: cartTotal,
     };
     //window.location='/payhome'

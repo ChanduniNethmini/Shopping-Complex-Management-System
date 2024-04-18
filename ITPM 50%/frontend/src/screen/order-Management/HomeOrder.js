@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import "./myStyles.css";
+import jsPdf from "jspdf";
+import "jspdf-autotable";
 
 class HomeOrder extends Component {
   constructor(props) {
@@ -64,13 +66,42 @@ class HomeOrder extends Component {
       }
     });
   };
+  // Report pdf generating
+  jsPdfGenerator = () => {
+    // New document in jspdf
+    var doc = new jsPdf("l", "pt", "a3");
+
+    // Company name
+    var companyName = "Innovative Trade Plaza Mall- Order Report";
+    var title = "Order Report";
+
+    // Add company name and date
+    doc.text(600, 20, companyName, { align: "center" });
+    doc.text(600, 60, title, { align: "center" });
+
+    // Auto table for order details
+    doc.autoTable({ html: "#order-table" });
+
+    doc.autoTable({
+      columnStyles: { europe: { halign: "center" } },
+      margin: { top: 10 },
+    });
+
+    // Save the pdf
+    doc.save("Order Details.pdf");
+  };
+
   render() {
     return (
       <div>
         <div className="container">
           <br />
           <div style={{ fontSize: "15px" }}>
-            <a href="/order" class="previous" style={{ color: "white" }}>
+            <a
+              href="/admin_dashboard"
+              class="previous"
+              style={{ color: "white" }}
+            >
               &laquo; Previous
             </a>
           </div>
@@ -93,7 +124,11 @@ class HomeOrder extends Component {
             </form>
           </div>
 
-          <table class="table table-striped" style={{ fontSize: "17px" }}>
+          <table
+            id="order-table"
+            class="table table-striped"
+            style={{ fontSize: "17px" }}
+          >
             <thead>
               <tr>
                 <th scope="col">Order Index</th>
@@ -158,7 +193,15 @@ class HomeOrder extends Component {
             <br />
           </table>
         </div>
-
+        <div style={{ marginLeft: "80%" }}>
+          <button
+            className="btn btn-primary"
+            onClick={this.jsPdfGenerator}
+            style={{ width: "170px", height: "40px", fontSize: "15px" }}
+          >
+            Generate Report PDF
+          </button>
+        </div>
         <div class="center">
           <div class="pagination">
             <a href="#">&laquo;</a>

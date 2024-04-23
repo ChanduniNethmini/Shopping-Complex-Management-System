@@ -3,10 +3,17 @@ import axios from "axios";
 import swal from "sweetalert";
 import insert from "../../images/brands.gif";
 import "./myStyles.css";
-import { useLocation } from "react-router-dom";
+import StripeCheckout from 'react-stripe-checkout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class CreateOrders extends Component {
-  //intialization
+
+
+  onToken = (token) => {
+    console.log(token);
+    toast.success("Payment Successful!");
+  }
 
   constructor(props) {
     super(props);
@@ -46,9 +53,10 @@ export default class CreateOrders extends Component {
       [name]: value,
     });
   };
+
   //save to db
   onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission
 
     const {
       name,
@@ -139,6 +147,7 @@ export default class CreateOrders extends Component {
       });
     }
   };
+
   demo = () => {
     //setState
     this.setState({
@@ -333,7 +342,7 @@ export default class CreateOrders extends Component {
 
                       <br />
 
-                      <button
+                      {/* <button
                         className="btn btn-primary textsize2"
                         type="submit"
                         style={{
@@ -350,7 +359,20 @@ export default class CreateOrders extends Component {
                           <i className="far fa-check-square"></i>
                           &nbsp; Continue with payment
                         </a>
-                      </button>
+                      </button> */}
+
+                     
+                      <div>
+                       
+                        <div className="mt-2">
+                          <StripeCheckout
+                            token={this.onToken}
+                            stripeKey="pk_test_51P7jrFSBwVfyKvSe6zLOs01vRh5f3IDsJt01Jb7QBMsKPKddVWrG6sTWoPyaXNPazrzo681UmZ0odYVBuOcyzTXb00c7AUIj7s"
+                          />
+                        </div>
+                        
+                        <ToastContainer />
+                      </div>
                     </form>
                   </div>
                 </div>

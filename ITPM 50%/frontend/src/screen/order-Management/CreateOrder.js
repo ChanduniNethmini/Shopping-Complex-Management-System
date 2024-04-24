@@ -364,11 +364,27 @@ export default class CreateOrders extends Component {
                      
                       <div>
                        
-                        <div className="mt-2">
-                          <StripeCheckout
-                            token={this.onToken}
-                            stripeKey="pk_test_51P7jrFSBwVfyKvSe6zLOs01vRh5f3IDsJt01Jb7QBMsKPKddVWrG6sTWoPyaXNPazrzo681UmZ0odYVBuOcyzTXb00c7AUIj7s"
-                          />
+                        <div>
+                         
+                          <div className="mt-2">
+                            <StripeCheckout
+                              token={this.onToken}
+                              stripeKey="pk_test_51P7jrFSBwVfyKvSe6zLOs01vRh5f3IDsJt01Jb7QBMsKPKddVWrG6sTWoPyaXNPazrzo681UmZ0odYVBuOcyzTXb00c7AUIj7s"
+                              amount={this.state.cartTotal * 100} 
+                              currency="LKR"
+                              name="E-SHOP" 
+                              description="Order Payment" 
+                              image={insert} 
+                              billingAddress={true} 
+                              shippingAddress={true} 
+                            >
+                              
+                              <button className="btn btn-primary textsize">
+                                Pay with Card
+                              </button>
+                            </StripeCheckout>
+                          </div>
+                          <ToastContainer />
                         </div>
                         
                         <ToastContainer />

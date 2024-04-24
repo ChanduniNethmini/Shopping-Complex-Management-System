@@ -3,17 +3,16 @@ import axios from "axios";
 import swal from "sweetalert";
 import insert from "../../images/brands.gif";
 import "./myStyles.css";
-import StripeCheckout from 'react-stripe-checkout';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import StripeCheckout from "react-stripe-checkout";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Payment from "./Payment";
 
 export default class CreateOrders extends Component {
-
-
   onToken = (token) => {
     console.log(token);
     toast.success("Payment Successful!");
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -342,7 +341,7 @@ export default class CreateOrders extends Component {
 
                       <br />
 
-                      {/* <button
+                      <button
                         className="btn btn-primary textsize2"
                         type="submit"
                         style={{
@@ -352,33 +351,29 @@ export default class CreateOrders extends Component {
                         }}
                       >
                         <a
-                          href="/payment/create"
+                          href="/payment"
                           style={{ textDecoration: "none", color: "white" }}
                         >
                           {" "}
                           <i className="far fa-check-square"></i>
                           &nbsp; Continue with payment
                         </a>
-                      </button> */}
-
-                     
+                      </button>
+                      {/* 
                       <div>
-                       
                         <div>
-                         
                           <div className="mt-2">
                             <StripeCheckout
                               token={this.onToken}
                               stripeKey="pk_test_51P7jrFSBwVfyKvSe6zLOs01vRh5f3IDsJt01Jb7QBMsKPKddVWrG6sTWoPyaXNPazrzo681UmZ0odYVBuOcyzTXb00c7AUIj7s"
-                              amount={this.state.cartTotal * 100} 
+                              amount={this.state.cartTotal * 100}
                               currency="LKR"
-                              name="E-SHOP" 
-                              description="Order Payment" 
-                              image={insert} 
-                              billingAddress={true} 
-                              shippingAddress={true} 
+                              name="E-SHOP"
+                              description="Order Payment"
+                              image={insert}
+                              billingAddress={true}
+                              shippingAddress={true}
                             >
-                              
                               <button className="btn btn-primary textsize">
                                 Pay with Card
                               </button>
@@ -386,9 +381,9 @@ export default class CreateOrders extends Component {
                           </div>
                           <ToastContainer />
                         </div>
-                        
+
                         <ToastContainer />
-                      </div>
+                      </div> */}
                     </form>
                   </div>
                 </div>
@@ -398,6 +393,14 @@ export default class CreateOrders extends Component {
         </div>
         <br />
         <br />
+        <br />
+        <br />
+        <br />
+        <Payment
+          cartTotal={this.state.cartTotal}
+          onToken={this.onToken}
+          className="block"
+        />
       </div>
     );
   }

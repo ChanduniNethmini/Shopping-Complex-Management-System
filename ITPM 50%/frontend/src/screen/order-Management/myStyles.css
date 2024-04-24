@@ -67,3 +67,6 @@ a {
   }
   
   .pagination a:hover:not(.active) {background-color: #ddd;}
+  .block{
+    display: none !important;
+  }

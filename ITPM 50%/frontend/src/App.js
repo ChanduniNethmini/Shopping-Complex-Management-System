@@ -73,8 +73,10 @@ import HomeOrder from "./screen/order-Management/HomeOrder";
 import EditOrder from "./screen/order-Management/EditOrder";
 import OrderPost from "./screen/order-Management/OrderPost";
 import OrderReport from "./screen/order-Management/OrderReport";
+
 import Grid from "./BookAStall/Grid";
 import Stall from "./BookAStall/Stall";
+import Payment from "./screen/order-Management/Payment";
 
 /**
  * main application function
@@ -96,8 +98,12 @@ function App() {
             <Route path="/order/update/:id" element={<EditOrder />} />
             <Route path="/order/post/:id" element={<OrderPost />} />
             <Route path="/order/report" element={<OrderReport />} />
+
             <Route path="/grid" element={<Grid />} />
             <Route path="/stall" element={<Stall />} />
+
+            <Route path="/payment" element={<Payment/>} />
+
 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

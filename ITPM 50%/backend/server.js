@@ -12,6 +12,7 @@ const ShopOwner = require("./routes/shopOwner-route");
 const StallSeeker = require("./routes/stallSeeker-route");
 const TemporaryShop = require("./routes/temporaryShop-route");
 const orderRoutes = require("./routes/order.route");
+const stallRoutes = require("./routes/stall-route");
 
 dotenv.config();
 const app = express();
@@ -44,6 +45,7 @@ app.use("/api/v0/shopOwner", ShopOwner);
 app.use("/api/v0/stallSeeker", StallSeeker);
 app.use("/api/v0/temporaryShop", TemporaryShop);
 app.use(orderRoutes);
+app.use(stallRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);

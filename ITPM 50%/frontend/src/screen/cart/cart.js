@@ -86,7 +86,7 @@ const CartPage = () => {
                           +
                         </button>
                         <button
-                          style={{ height: "40px", width: "70px" }}
+                          style={{ height: "40px", width: "120px" }}
                           className="btn btn-danger ms-2"
                           onClick={() => removeItem(item.id)}
                         >
@@ -103,7 +103,7 @@ const CartPage = () => {
           <div className="col-auto ms-auto">
             <br />
             <br />
-            <h2>Total Price: Rs.{cartTotal}</h2>
+            <h3>Total Price: Rs.{cartTotal}</h3>
           </div>
           <br />
           <div className="col-auto">
@@ -111,7 +111,7 @@ const CartPage = () => {
             <button
               className="btn btn-danger m-2"
               onClick={() => emptyCart()}
-              style={{ height: "40px", width: "80px" }}
+              style={{ height: "40px", width: "90px" }}
             >
               Clear Cart
             </button>
@@ -129,6 +129,21 @@ const CartPage = () => {
               </a>
             </button> */}
             {/* Rest of your component JSX */}
+            <button className="btn btn-primary m-2">
+              <Link
+                to={{
+                  pathname: "/meetAtMall",
+                  state: { cartData: cartData },
+                }}
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  fontSize: "18px",
+                }}
+              >
+                Meet At The Mall
+              </Link>
+            </button>
             <button className="btn btn-primary m-2">
               <Link
                 to={{

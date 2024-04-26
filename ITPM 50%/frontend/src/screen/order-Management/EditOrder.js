@@ -7,9 +7,6 @@ import { useParams } from "react-router-dom";
 const EditOrder = () => {
   const [formData, setFormData] = useState({
     name: "",
-    postalNo: "",
-    street: "",
-    town: "",
     contactNo: "",
     orderDate: "",
     status: "",
@@ -23,9 +20,6 @@ const EditOrder = () => {
         const postData = res.data.post;
         setFormData({
           name: postData.name,
-          postalNo: postData.postalNo,
-          street: postData.street,
-          town: postData.town,
           contactNo: postData.contactNo,
           orderDate: postData.orderDate,
           status: postData.status,
@@ -54,9 +48,6 @@ const EditOrder = () => {
           swal("Update Successful", "Update is recorded", "success");
           setFormData({
             name: "",
-            postalNo: "",
-            street: "",
-            town: "",
             contactNo: "",
             orderDate: "",
             status: "",
@@ -96,10 +87,7 @@ const EditOrder = () => {
                       className="form-group"
                       style={{ marginBottom: "15px" }}
                     >
-                      <label
-                        style={{ marginBottom: "5px" }}
-                        className="topic"
-                      >
+                      <label style={{ marginBottom: "5px" }} className="topic">
                         Customer Name:{" "}
                       </label>
                       <input
@@ -113,50 +101,11 @@ const EditOrder = () => {
                       />
                     </div>
 
-                    <label style={{ marginBottom: "5px" }} className="topic">
-                      Address:{" "}
-                    </label>
-                    <div className="row">
-                      <div className="col">
-                        <input
-                          type="text"
-                          className="form-control "
-                          name="postalNo"
-                          placeholder="postal no"
-                          value={formData.postalNo}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                      <div className="col">
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="street"
-                          placeholder="street"
-                          value={formData.street}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                      <div className="col">
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="town"
-                          placeholder="town"
-                          value={formData.town}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                    </div>
-
                     <div
                       className="form-group"
                       style={{ marginBottom: "15px" }}
                     >
-                      <label
-                        style={{ marginBottom: "5px" }}
-                        className="topic"
-                      >
+                      <label style={{ marginBottom: "5px" }} className="topic">
                         Contact Number
                       </label>
                       <input
@@ -173,10 +122,7 @@ const EditOrder = () => {
                       className="form-group"
                       style={{ marginBottom: "15px" }}
                     >
-                      <label
-                        style={{ marginBottom: "5px" }}
-                        className="topic"
-                      >
+                      <label style={{ marginBottom: "5px" }} className="topic">
                         Order Date
                       </label>
                       <input
@@ -193,10 +139,7 @@ const EditOrder = () => {
                       className="form-group"
                       style={{ marginBottom: "15px" }}
                     >
-                      <label
-                        style={{ marginBottom: "5px" }}
-                        className="topic"
-                      >
+                      <label style={{ marginBottom: "5px" }} className="topic">
                         Status
                       </label>
                       <input

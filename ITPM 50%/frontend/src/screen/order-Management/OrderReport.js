@@ -89,9 +89,6 @@ class OrderReport extends Component {
               <tr>
                 <th scope="col">Order Index</th>
                 <th scope="col">Customer Name</th>
-                <th scope="col">PostalNo</th>
-                <th scope="col">Street</th>
-                <th scope="col">Town</th>
                 <th scope="col">Contact Number</th>
                 <th scope="col">Order Date</th>
                 <th scope="col">Status</th>
@@ -103,9 +100,6 @@ class OrderReport extends Component {
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>{posts.name}</td>
-                  <td>{posts.postalNo}</td>
-                  <td>{posts.street}</td>
-                  <td>{posts.town}</td>
                   <td>{posts.contactNo}</td>
                   <td>{posts.orderDate}</td>
                   <td>{posts.status}</td>

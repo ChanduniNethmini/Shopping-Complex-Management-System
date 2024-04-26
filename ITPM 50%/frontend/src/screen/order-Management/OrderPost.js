@@ -15,16 +15,7 @@ const OrderPost = () => {
     });
   }, [id]);
 
-  const {
-    name,
-    postalNo,
-    street,
-    town,
-    contactNo,
-    orderDate,
-    status,
-    cartTotal,
-  } = post;
+  const { name, contactNo, orderDate, status, cartTotal } = post;
 
   return (
     <div>
@@ -41,12 +32,6 @@ const OrderPost = () => {
               <h1>{name}</h1>
               <hr />
               <dl className="row" style={{ fontSize: "20px" }}>
-                <dt className="col-sm-3">Postal No</dt>
-                <dd className="col-sm-9">{postalNo}</dd>
-                <dt className="col-sm-3">Street</dt>
-                <dd className="col-sm-9">{street}</dd>
-                <dt className="col-sm-3">Town</dt>
-                <dd className="col-sm-9">{town}</dd>
                 <dt className="col-sm-3">Contact No</dt>
                 <dd className="col-sm-9">{contactNo}</dd>
                 <dt className="col-sm-3">Order Date</dt>

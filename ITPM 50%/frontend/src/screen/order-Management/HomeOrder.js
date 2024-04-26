@@ -49,10 +49,8 @@ class HomeOrder extends Component {
   };
 
   filterData(posts, searchKey) {
-    const result = posts.filter(
-      (post) =>
-        post.name.toLowerCase().includes(searchKey) ||
-        post.town.toLowerCase().includes(searchKey)
+    const result = posts.filter((post) =>
+      post.name.toLowerCase().includes(searchKey)
     );
     this.setState({ posts: result });
   }
@@ -133,9 +131,6 @@ class HomeOrder extends Component {
               <tr>
                 <th scope="col">Order Index</th>
                 <th scope="col">Customer Name</th>
-                <th scope="col">PostalNo</th>
-                <th scope="col">Street</th>
-                <th scope="col">Town</th>
                 <th scope="col">Contact Number</th>
                 <th scope="col">Order Date</th>
                 <th scope="col">Status</th>
@@ -155,9 +150,6 @@ class HomeOrder extends Component {
                       {posts.name}
                     </a>
                   </td>
-                  <td>{posts.postalNo}</td>
-                  <td>{posts.street}</td>
-                  <td>{posts.town}</td>
                   <td>{posts.contactNo}</td>
                   <td>{posts.orderDate}</td>
                   <td>{posts.status}</td>

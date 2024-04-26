@@ -6,7 +6,6 @@ import "./myStyles.css";
 import StripeCheckout from "react-stripe-checkout";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Payment from "./Payment";
 
 export default class CreateOrders extends Component {
   onToken = (token) => {
@@ -18,9 +17,6 @@ export default class CreateOrders extends Component {
     super(props);
     this.state = {
       name: "",
-      postalNo: "",
-      street: "",
-      town: "",
       contactNo: "",
       orderDate: "",
       status: "Pending",
@@ -30,7 +26,7 @@ export default class CreateOrders extends Component {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
     const cartTotal = this.calculateCartTotal(cartData.items);
     console.log(cartTotal);
-
+    console.log(cartData.items);
     this.setState({
       cartTotal: cartTotal,
     });
@@ -57,22 +53,10 @@ export default class CreateOrders extends Component {
   onSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission
 
-    const {
-      name,
-      postalNo,
-      street,
-      town,
-      contactNo,
-      orderDate,
-      status,
-      cartTotal,
-    } = this.state;
+    const { name, contactNo, orderDate, status, cartTotal } = this.state;
 
     const data = {
       name: name,
-      postalNo: postalNo,
-      street: street,
-      town: town,
       contactNo: contactNo,
       orderDate: orderDate,
       status: status,
@@ -84,14 +68,7 @@ export default class CreateOrders extends Component {
     //validation
 
     const re = /^[0-9\b]+$/;
-    if (
-      name == "" ||
-      postalNo == "" ||
-      street == "" ||
-      town == "" ||
-      contactNo == "" ||
-      orderDate == ""
-    ) {
+    if (name == "" || contactNo == "" || orderDate == "") {
       swal(
         "Please fill the form correctly",
         "Form values cannot be empty",
@@ -105,16 +82,10 @@ export default class CreateOrders extends Component {
         "contact number should be valid pattern",
         "error"
       );
-    } else if (town.length < 2) {
-      swal(
-        " Please enter valid town",
-        "length should be greater than 2",
-        "error"
-      );
     } else {
       swal({
         title: "Are you sure?",
-        text: `Name: ${this.state.name} | Postal No.: ${this.state.postalNo} | Street: ${this.state.street} | Town: ${this.state.town} | Contact No: ${this.state.contactNo} | Status: ${this.state.status} | Total: ${this.state.cartTotal}`,
+        text: `Name: ${this.state.name} | Contact No: ${this.state.contactNo} | Status: ${this.state.status} | Total: ${this.state.cartTotal}`,
         icon: "info",
         buttons: true,
         dangerMode: true,
@@ -125,9 +96,6 @@ export default class CreateOrders extends Component {
               localStorage.removeItem("react-use-cart");
               this.setState({
                 name: "",
-                postalNo: "",
-                street: "",
-                town: "",
                 contactNo: "",
                 orderDate: "",
                 price: "",
@@ -152,24 +120,19 @@ export default class CreateOrders extends Component {
     this.setState({
       name: "Chanduni Nethmini",
     });
-
-    this.setState({
-      postalNo: "259",
-    });
-
-    this.setState({
-      street: "Lake road",
-    });
-
-    this.setState({
-      town: "Colombo2",
-    });
     this.setState({
       contactNo: "0710000000",
     });
   };
 
   render() {
+    // Get today's date and add one day to set as minimum date
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    // Format the date to YYYY-MM-DD for input type="date"
+    const minDate = tomorrow.toISOString().split("T")[0];
     return (
       <div>
         <div class="row">
@@ -228,7 +191,7 @@ export default class CreateOrders extends Component {
                         />
                       </div>
 
-                      <label style={{ marginBottom: "5px" }} className="topic">
+                      {/* <label style={{ marginBottom: "5px" }} className="topic">
                         <b>Address: </b>
                       </label>
                       <div class="row">
@@ -265,7 +228,7 @@ export default class CreateOrders extends Component {
                             onChange={this.handleInputChange}
                           />
                         </div>
-                      </div>
+                      </div> */}
 
                       <div
                         className="form-group"
@@ -295,7 +258,7 @@ export default class CreateOrders extends Component {
                           style={{ marginBottom: "5px" }}
                           className="topic"
                         >
-                          <b>Order Date</b>
+                          <b>Delivery Date: </b>
                         </label>
                         <input
                           type="date"
@@ -304,6 +267,7 @@ export default class CreateOrders extends Component {
                           placeholder="Date"
                           value={this.state.orderDate}
                           onChange={this.handleInputChange}
+                          min={minDate}
                         />
                       </div>
 
@@ -314,16 +278,15 @@ export default class CreateOrders extends Component {
                       <label style={{ marginBottom: "5px" }} className="topic">
                         <b>Order Total: {this.state.cartTotal}</b>
                       </label>
-                      <br />
 
-                      <button
+                      {/* <button
                         type="button"
                         class="btn btn-outline-dark btn-sm textsize2"
                         onClick={this.demo}
                       >
                         {" "}
                         Demo{" "}
-                      </button>
+                      </button> */}
                       <br />
                       <button
                         className="btn btn-primary textsize"
@@ -336,30 +299,11 @@ export default class CreateOrders extends Component {
                         onClick={this.onSubmit}
                       >
                         <i className="far fa-check-square"></i>
-                        &nbsp; Place the Order
+                        &nbsp; Confirm the Details
                       </button>
 
                       <br />
 
-                      <button
-                        className="btn btn-primary textsize2"
-                        type="submit"
-                        style={{
-                          marginTop: "15px",
-                          width: "200px",
-                          height: "40px",
-                        }}
-                      >
-                        <a
-                          href="/payment"
-                          style={{ textDecoration: "none", color: "white" }}
-                        >
-                          {" "}
-                          <i className="far fa-check-square"></i>
-                          &nbsp; Continue with payment
-                        </a>
-                      </button>
-                      {/* 
                       <div>
                         <div>
                           <div className="mt-2">
@@ -383,7 +327,7 @@ export default class CreateOrders extends Component {
                         </div>
 
                         <ToastContainer />
-                      </div> */}
+                      </div>
                     </form>
                   </div>
                 </div>
@@ -391,16 +335,6 @@ export default class CreateOrders extends Component {
             </div>
           </div>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <Payment
-          cartTotal={this.state.cartTotal}
-          onToken={this.onToken}
-          className="block"
-        />
       </div>
     );
   }

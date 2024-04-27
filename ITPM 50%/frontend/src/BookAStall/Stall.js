@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./stall.css";
 
-const Stall = ({ status, onClick }) => {
+const Stall = ({ status, onClick, price }) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+  console.log(price);
   const getColor = () => {
     switch (status) {
       case "booked":
@@ -12,7 +14,13 @@ const Stall = ({ status, onClick }) => {
         return "green";
     }
   };
+  const handleMouseEnter = () => {
+    setShowTooltip(true);
+  };
 
+  const handleMouseLeave = () => {
+    setShowTooltip(false);
+  };
   return (
     <div
       className="stall"
@@ -25,11 +33,16 @@ const Stall = ({ status, onClick }) => {
         justifyContent: "center",
         alignItems: "center",
         cursor: status === "booked" ? "not-allowed" : "pointer",
+        position: "relative",
       }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       onClick={
         status === "booked" ? () => alert("This stall is booked.") : onClick
       }
-    ></div>
+    >
+      {showTooltip && <div className="tooltip">{`Price: ${price}`}</div>}
+    </div>
   );
 };
 

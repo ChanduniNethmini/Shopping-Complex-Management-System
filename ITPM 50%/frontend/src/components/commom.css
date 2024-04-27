@@ -31,17 +31,25 @@
   height: 500px;
 }
 .btncontainer {
-  padding-left: 18%;
+  padding-left: 70px;
   margin-top: 20px;
   margin-bottom: 20px;
+  padding-right: 70px;
 }
 .btns {
-  width: 80%;
+  width: 60%;
   height: 50px;
   background-color:transparent;
   border-radius: 10px;
-  border-width: 2px;
+  border-width: 3px;
   border-color: black;
+  font-size: 18px;
+  font-weight: 600;
+
+}
+.btns:hover {
+  background-color: black; /* Change background color to black */
+  color: white; /* Change text color to white for contrast */
 }
 .shop-box {
   max-width: 90%;

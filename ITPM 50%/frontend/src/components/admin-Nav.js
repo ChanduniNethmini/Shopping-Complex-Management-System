@@ -144,7 +144,12 @@ const AdminNav = () => {
             </ListItemIcon>
             <ListItemText primary="Orders" />
           </ListItem>
-
+          <ListItem button component={Link} to="/item_table">
+            <ListItemIcon>
+              <StoreIcon style={{ color: "blue" }} />
+            </ListItemIcon>
+            <ListItemText primary="Item Table" />
+          </ListItem>
           <ListItem button component={Link} to="/login">
             <ListItemIcon>
               <MeetingRoom style={{ color: "blue" }} />

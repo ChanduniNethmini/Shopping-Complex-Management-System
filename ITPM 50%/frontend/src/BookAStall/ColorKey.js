@@ -8,6 +8,7 @@ const ColorKey = () => {
         flexDirection: "column",
         alignItems: "flex-start",
         padding: "10px",
+        marginLeft: "50px",
       }}
     >
       <div style={{ display: "flex", alignItems: "center" }}>

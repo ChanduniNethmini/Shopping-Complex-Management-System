@@ -9,7 +9,6 @@ const NavBar2 = () => {
   const handleLogout = () => {
     localStorage.clear(); // Clear local storage
     dispatch({ type: "CLEAR" }); // Reset user context
-    navigate("/signin"); // Redirect to sign-in page
   };
   const goToProfile = () => {
     navigate("/profile"); // Navigate to the profile page

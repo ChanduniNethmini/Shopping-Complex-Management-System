@@ -21,6 +21,7 @@
     "i": "^0.3.7",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
+    "materialize-css": "^1.0.0-rc.2",
     "notenv": "^2.0.3",
     "npm": "^10.5.0",
     "qrcode": "^1.5.3",

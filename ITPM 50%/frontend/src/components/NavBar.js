@@ -78,12 +78,12 @@ export default class NavBar extends Component {
             </ul>
             <span class="navbar-text">
               {" "}
-              <a class="dropdown-item" href="/login">
+              <a class="dropdown-item" href="/signin">
                 Login
               </a>
             </span>
             <span class="navbar-text">
-              <a class="dropdown-item" href="/register">
+              <a class="dropdown-item" href="/signup">
                 Register
               </a>
             </span>

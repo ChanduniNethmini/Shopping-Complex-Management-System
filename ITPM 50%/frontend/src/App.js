@@ -1,5 +1,11 @@
 import "./App.css";
-import React, { useEffect, createContext, useReducer, useContext } from "react";
+import React, {
+  useEffect,
+  createContext,
+  useReducer,
+  useContext,
+  useState,
+} from "react";
 import {
   BrowserRouter,
   Routes,
@@ -90,6 +96,25 @@ export const UserContext = createContext();
 
 const ProtectedRoute = ({ children }) => {
   const { state } = useContext(UserContext);
+  return state ? children : <Navigate to="/signin" />;
+};
+
+const AuthChecker = ({ children }) => {
+  const { state, dispatch } = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      dispatch({ type: "USER", payload: user });
+    }
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Or another suitable placeholder
+  }
+
   return state ? children : <Navigate to="/signin" />;
 };
 

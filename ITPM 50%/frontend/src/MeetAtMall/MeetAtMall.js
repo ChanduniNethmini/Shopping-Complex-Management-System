@@ -8,24 +8,15 @@ const MeetAtMall = () => {
   const [qrData, setQrData] = useState(""); // This will hold the QR code data
   const [cartItems, setCartItems] = useState([]); // Correctly initialize cartItems state
   const qrRef = useRef(null); // Reference to the QR code for downloading
+  const [date, setDate] = useState(""); // User input for date
+  const [time, setTime] = useState("");
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
     if (cartData && cartData.items) {
       const total = calculateCartTotal(cartData.items);
       setCartTotal(total);
-
-      const qrInfo = {
-        cartTotal: total,
-        items: cartData.items.map((item) => ({
-          itemID: item.itemID,
-          itemName: item.itemName,
-          quantity: item.quantity,
-        })),
-      };
-
       setCartItems(cartData.items); // Set the cartItems state
-      setQrData(JSON.stringify(qrInfo)); // Prepare the data to be encoded in QR
     }
   }, []); // Empty dependency array to ensure this effect runs only once on component mount
 
@@ -35,6 +26,20 @@ const MeetAtMall = () => {
       total += parseFloat(item.itemPrice) * item.quantity;
     });
     return total.toFixed(2);
+  };
+
+  const generateQrData = () => {
+    const qrInfo = {
+      date: date, // Include user-supplied date
+      time: time, // Include user-supplied time
+      cartTotal: cartTotal, // Cart total
+      items: cartItems.map((item) => ({
+        itemID: item.itemID,
+        itemName: item.itemName,
+        quantity: item.quantity,
+      })),
+    };
+    setQrData(JSON.stringify(qrInfo)); // Update QR data
   };
 
   const downloadQR = () => {
@@ -54,6 +59,16 @@ const MeetAtMall = () => {
     }
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault(); // Prevent page refresh
+    generateQrData(); // Generate the new QR data
+  };
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  // Format the date to YYYY-MM-DD for input type="date"
+  const minDate = tomorrow.toISOString().split("T")[0];
   return (
     <div style={{ marginTop: "30px" }}>
       <h2>QR Code for Your Order</h2>
@@ -62,6 +77,31 @@ const MeetAtMall = () => {
         Please provide this qr code when you collecting the order and do payment
         to the counter.{" "}
       </p>
+      <form onSubmit={handleFormSubmit}>
+        <div>
+          <label>PickUp Date:</label>
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className="inputstyle"
+            min={minDate}
+          />
+        </div>
+        <div>
+          <label>PickUp Time:</label>
+          <input
+            type="time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            className="inputstyle"
+          />
+        </div>
+        <button className="downloadbutton" type="submit">
+          Generate QR Code
+        </button>
+      </form>
+      <br />
       <div>
         <QRCode value={qrData} size={256} />
       </div>

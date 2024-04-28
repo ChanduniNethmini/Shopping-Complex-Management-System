@@ -145,9 +145,9 @@ const Routing = () => {
       <Route
         path="/grid"
         element={
-          <ProtectedRoute>
+          
             <Grid />
-          </ProtectedRoute>
+          
         }
       />
       <Route path="/stall" element={<Stall />} />

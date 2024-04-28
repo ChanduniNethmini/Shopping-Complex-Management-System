@@ -10,7 +10,12 @@
   margin: 10px auto;
 }
 .bCard{
-  margin-top: 50px;
+  margin-top: 200px;
+  margin-bottom: 300px;
+}
+.bbCard{
+  margin-top: 100px;
+  margin-bottom: 200px;
 }
 /* label underline focus color */
 .input-field input[type=text],[type=password],[type=email]:focus {

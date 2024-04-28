@@ -78,7 +78,7 @@ export default function CardShop() {
   };
   return (
     <>
-      <div className="shop-box">
+      <div className="shop-box" style={{ backgroundColor: "#f0f0f0" }}> {/* Add background color style here */}
         <div className="tabs">
           <button onClick={() => handleTabClick("floor1")}>Floor 1</button>
           <button onClick={() => handleTabClick("floor2")}>Floor 2</button>

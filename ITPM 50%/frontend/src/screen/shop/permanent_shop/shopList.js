@@ -45,9 +45,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     hero: {
-        background: 'url("/path/to/hero-image.jpg")', // Replace with path to hero image
+        background: 'url("/path/to/hero-image.jpg")', 
         backgroundSize: 'cover',
-        height: '400px', // Adjust height as needed
+        height: '400px', 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -106,7 +106,7 @@ const PermanentShopHomePage = () => {
     return (
         <div className={classes.root}>
 
-            <CustomerNav />
+            {/* <CustomerNav /> */}
             <Grid container justify="center">
                 <Grid item>
                     <img src={shopImage} alt="login illustration" className={classes.illustration} />
@@ -118,7 +118,7 @@ const PermanentShopHomePage = () => {
                     <hr/>
                     <Grid container spacing={3} className={classes.gridContainer}>
                         {shops.map((shop) => (
-                            <Grid item xs={12} sm={6} md={4} key={shop.shopID}>
+                            <Grid item xs={12} sm={6} md={3} key={shop.shopID}>
                                 <Card className={classes.card}>
                                     <CardActionArea component={Link} to={`/shop`}>
                                         <CardMedia

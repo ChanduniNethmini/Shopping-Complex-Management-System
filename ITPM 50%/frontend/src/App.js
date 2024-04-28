@@ -16,7 +16,7 @@ import {
 import { CartProvider } from "react-use-cart";
 import SignIn from "./screen/user-management/Signin";
 import Signup from "./screen/user-management/SignUp";
-import Profiles from "./screen/user-management/Profile";
+import ProfilePage from "./components/ProfilePage";
 import { initialState, reducer } from "../src/components/reducers/userReducer";
 /*
   Dashboards
@@ -36,7 +36,7 @@ import Profile from "./screen/customer/profile";
 /*
   shop pages 
 */
-import ShopHomePage from "./screen/cart/HomeCart";
+import ShopPage from "./components/ShopPage";
 
 /*
   shop pages
@@ -44,7 +44,7 @@ import ShopHomePage from "./screen/cart/HomeCart";
 */
 import PermanentShopDashboard from "./screen/shop/permanent_shop/ShopTable";
 import PermenentShopHome from "./screen/shop/permanent_shop/shop";
-import PermanentShopHomePage from "./screen/shop/permanent_shop/shopList";
+import PermenentsPage from "./components/PermenentsPage";
 
 /*
   shop pages
@@ -67,7 +67,7 @@ import StallSeekerTable from "./screen/stallSeeker/StallSeekerTable";
 /*
   cart pages
 */
-import CartPage from "./screen/cart/cart";
+import CartViewPage from "./components/CartViewPage";
 
 /*
   Event pages
@@ -83,14 +83,15 @@ import ItemView from "./screen/item/ItemView";
 import HomePage from "./components/Home";
 
 import CardDeals from "./components/CardDeals";
-import CreateOrders from "./screen/order-Management/CreateOrder";
+import OrderPage from "./components/OrderPage";
 import HomeOrder from "./screen/order-Management/HomeOrder";
 import EditOrder from "./screen/order-Management/EditOrder";
 import OrderPost from "./screen/order-Management/OrderPost";
 import OrderReport from "./screen/order-Management/OrderReport";
-import MeetAtMall from "./MeetAtMall/MeetAtMall";
-import Grid from "./BookAStall/Grid";
+import MeetAtMallPage from "./components/MeetAtMallPage";
+import GridPage from "./components/GridPage";
 import Stall from "./BookAStall/Stall";
+import TemporaryPage from "./components/TemporaryShop";
 
 export const UserContext = createContext();
 
@@ -136,9 +137,9 @@ const Routing = () => {
       <Route path="/slider" element={<CardDeals />} />
       <Route path="/customer" element={<CustomerDashBoard />} />
       <Route path="/shop_dashboard" element={<PermenentShopHome />} />
-      <Route path="/admin_dashboard" element={<AdminDashboard />} />
-      <Route path="/shop" element={<ShopHomePage />} />
-      <Route path="/cart" element={<CartPage />} />
+      <Route path="/_dashboadminard" element={<AdminDashboard />} />
+      <Route path="/shop" element={<ShopPage />} />
+      <Route path="/cart" element={<CartViewPage />} />
       <Route path="/order/home" element={<HomeOrder />} />
       <Route path="/order/update/:id" element={<EditOrder />} />
       <Route path="/order/post/:id" element={<OrderPost />} />
@@ -147,33 +148,33 @@ const Routing = () => {
         path="/profile"
         element={
           <ProtectedRoute>
-            <Profiles />
+            <ProfilePage />
           </ProtectedRoute>
         }
       />
       <Route
         path="/order"
         element={
-          <ProtectedRoute>
-            <CreateOrders />
-          </ProtectedRoute>
+          
+            <OrderPage />
+          
         }
       />
       <Route
         path="/meetAtMall"
         element={
           <ProtectedRoute>
-            <MeetAtMall />
+            <MeetAtMallPage />
           </ProtectedRoute>
         }
-      />
-      <Route path="/grid" element={<Grid />} />
+      />-
+      <Route path="/grid" element={<GridPage />} />
       <Route path="/stall" element={<Stall />} />
       <Route path="/permenentshop" element={<PermenentShopHome />} />
       <Route path="/permenentshop_table" element={<PermanentShopDashboard />} />
-      <Route path="/permenentshop_home" element={<PermanentShopHomePage />} />
+      <Route path="/permenentshop_home" element={<PermenentsPage />} />
       <Route path="/temporyshop_table" element={<TemporaryShopDashboard />} />
-      <Route path="/temporyshop_home" element={<TemporaryShopHomePage />} />
+      <Route path="/temporyshop_home" element={<TemporaryPage />} />
       <Route path="/seller_table" element={<SellerTable />} />
       <Route path="/add_seller" element={<SellerForm />} />
       <Route path="/stallseeker_table" element={<StallSeekerTable />} />

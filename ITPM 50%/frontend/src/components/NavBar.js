@@ -7,19 +7,22 @@ export default class NavBar extends Component {
       <div>
         <div className="row">
           <div className="col-9" style={{ letterSpacing: "12px" }}>
+            <marquee direction="left">
             Innovative Trade Plaza Mall
+            </marquee>
           </div>
           <div className="col-3">Need Help? Call Us: (+94) 11111111</div>
           <hr />
         </div>
 
         <NavBar2 />
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">
+
+        <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#ff5733" }}>
+          <a className="navbar-brand" href="#">
             Home
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarText"
@@ -27,28 +30,28 @@ export default class NavBar extends Component {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="/permenentshop_home">
+          <div className="collapse navbar-collapse" id="navbarText">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+                <a className="nav-link" href="/permenentshop_home">
                   Stores
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/temporyshop_home">
+              <li className="nav-item">
+                <a className="nav-link" href="/temporyshop_home">
                   Stalls
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/grid">
+              <li className="nav-item">
+                <a className="nav-link" href="/grid">
                   Book a stall
                 </a>
               </li>
-              <li class="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle"
                   href="#"
                   id="navbarDropdownMenuLink"
                   data-toggle="dropdown"
@@ -58,32 +61,31 @@ export default class NavBar extends Component {
                   Categories
                 </a>
                 <div
-                  class="dropdown-menu"
+                  className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <a class="dropdown-item" href="/shop">
+                  <a className="dropdown-item" href="/shop">
                     Foods
                   </a>
-                  <a class="dropdown-item" href="/shop">
+                  <a className="dropdown-item" href="/shop">
                     Stationary
                   </a>
-                  <a class="dropdown-item" href="/shop">
+                  <a className="dropdown-item" href="/shop">
                     Clothes
                   </a>
-                  <a class="dropdown-item" href="/shop">
+                  <a className="dropdown-item" href="/shop">
                     Electronics
                   </a>
                 </div>
               </li>
             </ul>
-            <span class="navbar-text">
-              {" "}
-              <a class="dropdown-item" href="/signin">
+            <span className="navbar-text">
+              <a className="nav-link" href="/signin">
                 Login
               </a>
             </span>
-            <span class="navbar-text">
-              <a class="dropdown-item" href="/signup">
+            <span className="navbar-text">
+              <a className="nav-link" href="/signup">
                 Register
               </a>
             </span>

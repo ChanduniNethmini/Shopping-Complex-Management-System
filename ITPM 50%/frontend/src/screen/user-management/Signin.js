@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import M from "materialize-css";
 import { UserContext } from "../../App";
+import "./signin.css"; // Import CSS file for custom styling
 
 export default function SignIn() {
   const { state, dispatch } = useContext(UserContext);
@@ -50,25 +51,22 @@ export default function SignIn() {
       });
   };
   return (
-    <div className="container">
+    <div className="back center-align" > {/* Apply center-align class to center the container */}
       <div className="row">
-        <div
-          className="col-8"
-          style={{ backgroundColor: "#ffebee red lighten-5" }}
-        >
+        <div className="col s12 m8 offset-m2"> {/* Adjust width here */}
           <div className="bCard">
             <div data-testid="sign-1" className="card lCard input-field ">
-              <h4>
-                <b>SignIn</b>
-              </h4>
+              <h3><b>SignIn</b></h3>
               <input
                 type="email"
+                className="form-control mt-3"
                 placeholder="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
                 type="password"
+                className="form-control mt-3"
                 placeholder="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -76,11 +74,13 @@ export default function SignIn() {
               <br />
               <br />
               <button
-                className="btn waves-effect waves-light #bf360c deep-orange darken-4"
+                className="btn waves-effect waves-light #bf360c deep-orange darken-4 mt-3 custom-button"
                 onClick={() => PostData()}
               >
                 LOGIN
               </button>
+
+
               <br />
               <Link to="/signup">Don't have an account ?</Link>
             </div>

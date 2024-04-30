@@ -167,6 +167,7 @@ const Routing = () => {
           </ProtectedRoute>
         }
       />
+
       <Route path="/grid" element={<Grid />} />
       <Route path="/stall" element={<Stall />} />
       <Route path="/permenentshop" element={<PermenentShopHome />} />

@@ -126,12 +126,12 @@ export default class CreateOrders extends Component {
   };
 
   render() {
-    // Get today's date and add one day to set as minimum date
+   
     const today = new Date();
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-    // Format the date to YYYY-MM-DD for input type="date"
+   
     const minDate = tomorrow.toISOString().split("T")[0];
     return (
       <div>

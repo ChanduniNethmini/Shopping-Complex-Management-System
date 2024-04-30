@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import M from "materialize-css";
+import "react-toastify/dist/ReactToastify.css";
+import "./signin.css";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -9,16 +12,19 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [image, setImage] = useState("");
   const [url, setUrl] = useState(undefined);
+
   useEffect(() => {
     if (url) {
-      uploadFeilds();
+      uploadFields();
     }
   }, [url]);
+
   const uploadPic = () => {
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "Social-webApp");
     data.append("cloud_name", "dt0isai38");
+
     fetch("https://api.cloudinary.com/v1_1/dt0isai38/image/upload", {
       method: "post",
       body: data,
@@ -32,15 +38,16 @@ export default function Signup() {
       });
   };
 
-  const uploadFeilds = () => {
+  const uploadFields = () => {
     if (
       !/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
         email
       )
     ) {
-      M.toast({ html: "invalid email", classes: "#d50000 red accent-4" });
+      toast.error("Invalid email");
       return;
     }
+
     fetch("http://localhost:8070/signup", {
       method: "post",
       headers: {
@@ -56,9 +63,9 @@ export default function Signup() {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          M.toast({ html: data.error, classes: "red" });
+          toast.error(data.error);
         } else {
-          M.toast({ html: data.message, classes: "green dark" });
+          toast.success(data.message);
           navigate("/signin");
         }
       })
@@ -71,52 +78,66 @@ export default function Signup() {
     if (image) {
       uploadPic();
     } else {
-      uploadFeilds();
+      uploadFields();
     }
   };
+
   return (
-    <div className="bCard">
-      <div className="card lCard input-field ">
-        <h4>
-          <b>SignUp</b>
-        </h4>
+    <div className="back center-align" >
+      <div className="row">
+        <div className="col s12 m8 offset-m2"> {/* Adjust width here */}
+          <div className="bbCard">
+            <div data-testid="sign-1" className="card lCard input-field ">
+        <h3><b>SignUp</b></h3>
         <input
           type="text"
-          placeholder="name"
+          className="form-control mt-3"
+          placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="email"
-          placeholder="email"
+          className="form-control mt-3"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          placeholder="password"
+          className="form-control mt-3"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <div className="file-field input-field">
-          <div className="btn  #bf360c deep-orange darken-4">
-            <span>Upload Photo</span>
-            <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-          </div>
-          <div className="file-path-wrapper">
-            <input className="file-path validate" type="text" placeholder="" />
+              <div className="file-field input-field">
+                <div className="btn deep-orange darken-4 mt-3">
+                  <span>Upload Photo</span>
+                  <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+                </div>
+                <div className="file-path-wrapper">
+                  <input className="file-path validate mt-2" type="text" placeholder="Upload file" readOnly />
+                </div>
+              </div>
+
+
+              <button
+                className="btn waves-effect custom-button waves-light #bf360c deep-orange darken-4 mt-3"
+                onClick={() => PostData()}
+              >
+                SignUp
+              </button>
+              <br />
+              <Link to="/signin">Already have an account ?</Link>
+            </div>
           </div>
         </div>
-        <button
-          className="btn waves-effect waves-light #bf360c deep-orange darken-4"
-          onClick={() => PostData()}
-        >
-          SignUp
-        </button>
-        <br />
-        <Link to="/signin">Already have an account ?</Link>
-      </div>
+        </div>
+
+
+
+      <ToastContainer />
     </div>
   );
 }

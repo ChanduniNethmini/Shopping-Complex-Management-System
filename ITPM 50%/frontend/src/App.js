@@ -167,8 +167,9 @@ const Routing = () => {
             <MeetAtMallPage />
           </ProtectedRoute>
         }
-      />-
-      <Route path="/grid" element={<GridPage />} />
+      />
+      <Route path="/gridPage" element={<GridPage />} />
+      <Route path="/grid" element={<Grid />} />
       <Route path="/stall" element={<Stall />} />
       <Route path="/permenentshop" element={<PermenentShopHome />} />
       <Route path="/permenentshop_table" element={<PermanentShopDashboard />} />

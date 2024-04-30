@@ -9,6 +9,18 @@ const Grid = () => {
   const [stalls, setStalls] = useState([]);
   const [selectedStalls, setSelectedStalls] = useState([]);
 
+  const getPrice = (index) => {
+    const columnIndex = index % 9; // 9 columns
+    if (columnIndex < 3) {
+      return 150000;
+
+    } else if (columnIndex < 6) {
+      return 100000;
+    } else {
+      return 75000;
+    }
+  };
+
   useEffect(() => {
     // Fetch initial stall data from the server
     axios.get("http://localhost:8070/stalls").then((response) => {
@@ -89,12 +101,14 @@ const Grid = () => {
               display: "grid",
               gridTemplateColumns: "repeat(9, 50px)",
               marginLeft: "10px",
+              gap: "10px",
             }}
           >
             {stalls.map((stall, index) => (
               <Stall
                 key={stall._id}
                 status={stall.status}
+                price={getPrice(index)}
                 onClick={() => handleStallClick(index)}
               />
             ))}

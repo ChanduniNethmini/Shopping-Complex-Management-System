@@ -41,11 +41,7 @@ const CartPage = () => {
         <div className="row justify-content-center">
           <div className="col-12">
             <h3 className="text">
-              <h2 className="text-center">
-                <font face="Comic sans MS" size=" 6">
-                  My Shopping Cart
-                </font>{" "}
-              </h2>
+              <h2 className="text-center">Shopping Cart</h2>
             </h3>
             <h3 className="text">
               {" "}
@@ -61,7 +57,7 @@ const CartPage = () => {
                   return (
                     <tr key={index}>
                       <td>
-                        <img src={item.itemImage} style={{ height: "9rem" }} />
+                        <img src={item.itemImage} style={{ height: "7rem" }} />
                       </td>
                       <td>{item.itemName}</td>
                       <td>{item.itemPrice}</td>
@@ -162,20 +158,6 @@ const CartPage = () => {
           </div>
         </div>
       </section>
-      <div class="ibox">
-        <div class="ibox-title text-center">
-          <h5>Support</h5>
-        </div>
-        <div class="ibox-content text-center">
-          <h3>
-            <i class="fa fa-phone"></i> +94 100 783 001
-          </h3>
-          <span class="small">
-            Please contact with us if you have any questions. We are avalible
-            24h.
-          </span>
-        </div>
-      </div>
     </div>
   );
 };

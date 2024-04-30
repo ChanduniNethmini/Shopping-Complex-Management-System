@@ -27,7 +27,7 @@ const HomeCart = () => {
       <section className="container">
         <div
           className="row justify-content-center"
-          style={{ height: "600px", overflowY: "scroll" }}
+          style={{ marginTop: "25px" }}
         >
           {items.map((item, index) => {
             return (

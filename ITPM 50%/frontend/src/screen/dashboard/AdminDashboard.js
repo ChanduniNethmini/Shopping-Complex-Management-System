@@ -6,14 +6,14 @@ import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import AdminNav from "../../components/admin-Nav";
 import DashboardCard from "../../components/DashboardCard";
-import BarChart from "./BarChart";
+import Cards from "./Cards";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    height: "100vh",
+    height: "270px",
     width: "100%",
     flexDirection: "column",
     alignItems: "flex-start",
@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: 40,
     backgroundColor: "rgba(255,255,255,0.4)",
-    backdropFilter: "blur(10px)",
   },
   illustration: {
     position: "absolute",
@@ -67,29 +66,32 @@ const AdminDashboard = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AdminNav />
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <div className={classes.container}>
-          <Typography variant="h4" gutterBottom>
-            {" "}
-            Admin Dashboard
-          </Typography>
-          <div className={classes.row}>
-            <DashboardCard icon="people" title="Customers" value="100+" />
-            <DashboardCard icon="store" title="Per. Stalls" value="100+" />
-            <DashboardCard
-              icon="storefront"
-              title="Temp. Stalls"
-              value="100+"
-            />
-            <DashboardCard icon="business" title="Sellers" value="100+" />
-            <DashboardCard icon="event" title="Events" value="100+" />
+    <>
+      <div className={classes.root}>
+        <AdminNav />
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <div className={classes.container}>
+            <Typography variant="h4" gutterBottom>
+              {" "}
+              Admin Dashboard
+            </Typography>
+            <div className={classes.row}>
+              <DashboardCard icon="people" title="Customers" value="100+" />
+              <DashboardCard icon="store" title="Per. Stalls" value="100+" />
+              <DashboardCard
+                icon="storefront"
+                title="Temp. Stalls"
+                value="100+"
+              />
+              <DashboardCard icon="business" title="Sellers" value="100+" />
+              <DashboardCard icon="event" title="Events" value="100+" />
+            </div>
           </div>
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
+      <Cards />
+    </>
   );
 };
 

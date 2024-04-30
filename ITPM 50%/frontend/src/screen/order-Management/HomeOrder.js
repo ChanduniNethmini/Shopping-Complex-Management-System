@@ -4,6 +4,7 @@ import swal from "sweetalert";
 import "./myStyles.css";
 import jsPdf from "jspdf";
 import "jspdf-autotable";
+import AdminNav from '../../components/admin-Nav';
 
 class HomeOrder extends Component {
   constructor(props) {
@@ -92,6 +93,7 @@ class HomeOrder extends Component {
   render() {
     return (
       <div>
+        <AdminNav />
         <div className="container">
           <br />
           <div style={{ fontSize: "15px" }}>
@@ -125,7 +127,7 @@ class HomeOrder extends Component {
           <table
             id="order-table"
             class="table table-striped"
-            style={{ fontSize: "17px" }}
+            style={{ fontSize: "20px" }}
           >
             <thead>
               <tr>
@@ -135,14 +137,14 @@ class HomeOrder extends Component {
                 <th scope="col">Order Date</th>
                 <th scope="col">Status</th>
                 <th scope="col">Order Total(LKR)</th>
-                <th scope="col">action</th>
+                <th className="button-cell" scope="col">action</th>
               </tr>
             </thead>
             <tbody>
               {this.state.posts.map((posts, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
-                  <td>
+                  <td >
                     <a
                       href={`/order/post/${posts._id}`}
                       style={{ textDecoration: "none" }}
@@ -150,34 +152,26 @@ class HomeOrder extends Component {
                       {posts.name}
                     </a>
                   </td>
-                  <td>{posts.contactNo}</td>
-                  <td>{posts.orderDate}</td>
-                  <td>{posts.status}</td>
-                  <td>{posts.cartTotal}</td>
+                  <td >{posts.contactNo}</td>
+                  <td className="button-cell">{posts.orderDate}</td>
+                  <td className="button-cell">{posts.status}</td>
+                  <td className="button-cell">{posts.cartTotal}</td>
 
-                  <td>
-                    <a
-                      className="btn btn-primary"
-                      href={`/order/post/${posts._id}`}
-                    >
-                      <i className="fas fa-eye"></i>
+                  <td className="button-cell">
+                    <a className="btn btn-primary" href={`/order/post/${posts._id}`}>
+                      <i className="fas fa-eye"></i> View
                     </a>
                     &nbsp;
-                    <a
-                      className="btn btn-warning"
-                      href={`/order/update/${posts._id}`}
-                    >
-                      <i className="fas fa-edit"></i>
+                    <a className="btn btn-warning" href={`/order/update/${posts._id}`}>
+                      <i className="fas fa-edit"></i> Edit
                     </a>
                     &nbsp;
-                    <a
-                      className="btn btn-danger"
-                      href="#"
-                      onClick={() => this.onDelete(posts._id)}
-                    >
-                      <i className="fas fa-trash-alt"></i>
+                    <a className="btn btn-danger" href="#" onClick={() => this.onDelete(posts._id)}>
+                      <i className="fas fa-trash-alt"></i> Delete
                     </a>
+                   
                   </td>
+
                 </tr>
               ))}
             </tbody>

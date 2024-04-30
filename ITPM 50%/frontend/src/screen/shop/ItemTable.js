@@ -9,6 +9,7 @@ import { Image } from 'cloudinary-react';
 import LoginImage from '../../images/login.webp';
 import ImageUpload from '../../components/ImageUpload';
 import geanaratePDF from '../../components/PDFGenarator';
+import AdminNav from '../../components/admin-Nav';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -317,7 +318,9 @@ const ItemHome = () => {
 
     return (
         <div className={classes.root}>
-            <ResponsiveAppBar />
+           <AdminNav />
+            {/* <ResponsiveAppBar /> */}
+            
             <Grid container justify="center">
                 <Grid item>
                     <img src={LoginImage} alt="login illustration" className={classes.illustration} />
@@ -325,17 +328,18 @@ const ItemHome = () => {
             </Grid>
             <div className={classes.container}>
                 <div className={classes.row}>
-                    <Typography className={classes.appTitle} variant="h3">Shop Item List</Typography>
+                    <Typography style={{ marginLeft: "15%", fontWeight: 'bold', fontStyle: 'italic' }} className={classes.appTitle} variant="h2">Shop Item List</Typography>
                     <div className={classes.itemButton}>
                         <Button variant="contained" color="primary" onClick={() => setOpen(!open)}> {open ? 'X' : 'Add new Item'}</Button>
                         <Button variant="contained" color="secondary" onClick={() => getReport()}> Genarate Report </Button>
                     </div>
                 </div>
                 {open &&
-                    <div className={classes.paper}>
+                    <div style={{ width: "80%", marginLeft: "15%" }} className={classes.paper}>
                         <form className={classes.form} noValidate autoComplete="off">
                             <Typography variant="h5">{id ? "Update Item" : "Add New Item"}</Typography>
                             <TextField
+                                style={{ width: "60%" }}
                                 name="itemID"
                                 label="Item ID"
                                 value={formData.itemID}
@@ -343,6 +347,7 @@ const ItemHome = () => {
                             />
                             {errors.itemID && <p style={{ color: "red" }}>{errors.itemID}</p>}
                             <TextField
+                                style={{ width: "60%" }}
                                 name="itemName"
                                 label="Item Name"
                                 value={formData.itemName}
@@ -350,6 +355,7 @@ const ItemHome = () => {
                             />
                             {errors.itemName && <p style={{ color: "red" }}>{errors.itemName}</p>}
                             <TextField
+                                style={{ width: "60%" }}
                                 name="itemDescription"
                                 label="Item Description"
                                 value={formData.itemDescription}
@@ -357,6 +363,7 @@ const ItemHome = () => {
                             />
                             {errors.itemDescription && <p style={{ color: "red" }}>{errors.itemDescription}</p>}
                             <TextField
+                                style={{ width: "60%" }}
                                 name="itemPrice"
                                 label="Item Price"
                                 value={formData.itemPrice}
@@ -364,6 +371,7 @@ const ItemHome = () => {
                             />
                             {errors.itemPrice && <p style={{ color: "red" }}>{errors.itemPrice}</p>}
                             <TextField
+                                style={{ width: "60%" }}
                                 name="shopId"
                                 label="Shop ID"
                                 value={formData.shopId}
@@ -372,10 +380,10 @@ const ItemHome = () => {
                             {errors.shopId && <p style={{ color: "red" }}>{errors.shopId}</p>}
                             <ImageUpload handleUpload={handleUpload} url={url} setUrl={setUrl} />
                             {errors.itemImage && <p style={{ color: "red" }}>{errors.itemImage}</p>}
-                            <Button type="submit" variant="contained" color="primary" onClick={id ? handleUpdate : handleSubmit}>
+                            <Button style={{ width: "50%" }} type="submit" variant="contained" color="primary" onClick={id ? handleUpdate : handleSubmit}>
                                 Submit
                             </Button>
-                            <Button type="button" onClick={handleClose} variant="contained" color="secondary">
+                            <Button style={{ width: "50%" }} type="button" onClick={handleClose} variant="contained" color="secondary">
                                 Cancel
                             </Button>
                         </form>
@@ -385,7 +393,7 @@ const ItemHome = () => {
                 {
                     !open && (
                         <TableContainer>
-                            <Table className={classes.table} aria-label="shop-item-table">
+                            <Table style={{ width: "80%", marginLeft: "15%" }} className={classes.table} aria-label="shop-item-table">
                                 <TableHead className={classes.TableHeader}>
                                     <TableRow>
                                         <TableCell>Item ID</TableCell>

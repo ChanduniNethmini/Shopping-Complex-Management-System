@@ -1,35 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import SettingsIcon from "@material-ui/icons/Settings";
-import Divider from "@material-ui/core/Divider";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
+import { Typography, TextField, Button, Card, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton } from "@material-ui/core";
+import { Delete as DeleteIcon, Edit as EditIcon } from "@material-ui/icons";
 import AdminNav from "../../components/admin-Nav";
 import { Link } from 'react-router-dom';
-import SellerForm from "./sellerForm";
-import { TextField } from '@material-ui/core';
-import axios from "axios";
-import { API_URL } from '../../constants/constants';
-import IconButton from '@mui/material/IconButton';
 import useStyles from "./style";
 import geanaratePDF from "../../components/PDFGenarator";
+import axios from "axios";
+import { API_URL } from '../../constants/constants';
 
 const SellerTable = () => {
     const classes = useStyles();
@@ -56,7 +34,6 @@ const SellerTable = () => {
             const response = await axios.get(API_URL + "/shopOwner/get");
             const data = await response.data;
             setSataList(data.shopOwners);
-            console.log(data);
         }
         getData();
     }, [dataList]);
@@ -102,7 +79,6 @@ const SellerTable = () => {
         if (Object.values(errors).every((x) => x === "")) {
             axios.post(API_URL + "/shopOwner/add", formData)
                 .then((res) => {
-                    console.log(res);
                     setFormData({
                         name: "",
                         email: "",
@@ -119,7 +95,6 @@ const SellerTable = () => {
                         shopId: ""
                     });
                     setSataList([...dataList, res.data.shopOwner]);
-                    console.log(dataList);
                 }).catch((err) => {
                     console.log(err);
                 });
@@ -129,7 +104,6 @@ const SellerTable = () => {
     const handleDelete = (id) => {
         axios.delete(API_URL + "/shopOwner/delete/" + id)
             .then((res) => {
-                console.log(res);
                 setSataList(dataList.filter((item) => item._id !== id));
             }).catch((err) => {
                 console.log(err);
@@ -139,7 +113,6 @@ const SellerTable = () => {
     const handleUpdateData = (e) => {
         e.preventDefault();
         axios.put(API_URL + "/shopOwner/update/" + id, formData).then((res) => {
-            console.log(res);
             setOpen(false);
             setErrors({
                 name: "",
@@ -164,7 +137,6 @@ const SellerTable = () => {
     const setDataToEdit = (id) => {
         axios.get(API_URL + "/shopOwner/get/" + id)
             .then((res) => {
-                console.log(res);
                 setFormData(res.data.shopOwner);
                 setId(id);
                 setOpen(true);
@@ -182,7 +154,7 @@ const SellerTable = () => {
     const getReport = () => {
         let dataListCopy = dataList.map(item => {
             return {
-               sellerId: item._id,
+                sellerId: item._id,
                 name: item.name,
                 email: item.email,
                 phoneNumber: item.phoneNumber,
@@ -199,7 +171,7 @@ const SellerTable = () => {
             <Typography variant="h3">Seller Dashboard</Typography>
 
             <div className={classes.row}>
-                <Button variant="contained" color="primary" onClick={() => { setOpen(!open); setId("") }}> {open ? 'X' :'Add new'} </Button>
+                <Button variant="contained" color="primary" onClick={() => { setOpen(!open); setId("") }}> {open ? 'X' : 'Add new'} </Button>
                 <Button variant="contained" color="secondary" onClick={() => getReport()}> Genarate Report </Button>
             </div>
 
@@ -207,9 +179,13 @@ const SellerTable = () => {
             {
                 open && (
                     <div className={classes.form}>
-                        <Typography variant="h5">{id != "" ? "Update seller data " : 'Add new seller'}</Typography>
-                        <form className={classes.form} noValidate autoComplete="off" >
+                        <Typography variant="h5" style={{ fontWeight: 'bold', fontStyle: 'italic' }}>
+                            {id !== "" ? "Update seller data " : 'Add new seller'}
+                        </Typography>
+
+                        <form  className={classes.form} noValidate autoComplete="off" >
                             <TextField
+                                style={{ width: "90%" }}
                                 name="name"
                                 label="Name"
                                 value={formData.name}
@@ -217,6 +193,8 @@ const SellerTable = () => {
                             />
                             {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
                             <TextField
+
+                                style={{ width: "90%" }}
                                 name="email"
                                 label="Email"
                                 value={formData.email}
@@ -224,6 +202,7 @@ const SellerTable = () => {
                             />
                             {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
                             <TextField
+                                style={{ width: "90%" }}
                                 name="phoneNumber"
                                 label="Phone Number"
                                 value={formData.phoneNumber}
@@ -231,6 +210,7 @@ const SellerTable = () => {
                             />
                             {errors.phoneNumber && <p style={{ color: "red" }}>{errors.phoneNumber}</p>}
                             <TextField
+                                style={{ width: "90%" }}
                                 name="password"
                                 label="Password"
                                 value={formData.password}
@@ -238,16 +218,17 @@ const SellerTable = () => {
                             />
                             {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
                             <TextField
+                                style={{ width: "90%" }}
                                 name="shopId"
                                 label="Shop ID"
                                 value={formData.shopId}
                                 onChange={handleChange}
                             />
                             {errors.shopId && <p style={{ color: "red" }}>{errors.shopId}</p>}
-                            <Button type="submit" variant="contained" color="primary" onClick={id ? handleUpdateData : handleSubmit}>
+                            <Button style={{ width: "70%" }} type="submit" variant="contained" color="primary" onClick={id ? handleUpdateData : handleSubmit}>
                                 Submit
                             </Button>
-                            <Button type="button" onClick={() => handleClose()} variant="contained" color="secondary">
+                            <Button style={{ width: "70%" }} type="button" onClick={() => handleClose()} variant="contained" color="secondary">
                                 Cancel
                             </Button>
                         </form>

@@ -168,9 +168,10 @@ const StallSeekerDashboard = () => {
 
             {open &&
                 <div className={classes.form}>
-                    <Typography variant="h5">{id ? "Update Stall Seeker" : "Add New Stall Seeker"}</Typography>
+                    <Typography variant="h5" style={{ fontWeight: 'bold', fontStyle: 'italic' }}>{id ? "Update Stall Seeker" : "Add New Stall Seeker"}</Typography>
                     <form className={classes.form} noValidate autoComplete="off">
                         <TextField
+                            style={{ width: "90%" }}
                             name="name"
                             label="Name"
                             value={formData.name}
@@ -178,6 +179,7 @@ const StallSeekerDashboard = () => {
                         />
                         {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
                         <TextField
+                            style={{ width: "90%" }}
                             name="email"
                             label="Email"
                             value={formData.email}
@@ -185,6 +187,7 @@ const StallSeekerDashboard = () => {
                         />
                         {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
                         <TextField
+                            style={{ width: "90%" }}
                             name="phoneNumber"
                             label="Phone Number"
                             value={formData.phoneNumber}
@@ -192,6 +195,7 @@ const StallSeekerDashboard = () => {
                         />
                         {errors.phoneNumber && <p style={{ color: "red" }}>{errors.phoneNumber}</p>}
                         <TextField
+                            style={{ width: "90%" }}
                             name="registrationID"
                             label="Registration ID"
                             value={formData.registrationID}
@@ -199,16 +203,17 @@ const StallSeekerDashboard = () => {
                         />
                         {errors.registrationID && <p style={{ color: "red" }}>{errors.registrationID}</p>}
                         <TextField
+                            style={{ width: "90%" }}
                             name="registrationStatus"
                             label="Registration Status"
                             value={formData.registrationStatus}
                             onChange={handleChange}
                         />
                         {errors.registrationStatus && <p style={{ color: "red" }}>{errors.registrationStatus}</p>}
-                        <Button type="submit" variant="contained" color="primary" onClick={id ? handleUpdate : handleSubmit}>
+                        <Button style={{ width: "70%" }} type="submit" variant="contained" color="primary" onClick={id ? handleUpdate : handleSubmit}>
                             Submit
                         </Button>
-                        <Button type="button" onClick={handleClose} variant="contained" color="secondary">
+                        <Button style={{ width: "70%" }} type="button" onClick={handleClose} variant="contained" color="secondary">
                             Cancel
                         </Button>
                     </form>

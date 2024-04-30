@@ -19,7 +19,7 @@ import {
 import { Delete as DeleteIcon, Edit as EditIcon } from "@material-ui/icons";
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import axios from "axios";
-import { Image } from "cloudinary-react"; // Import Image component from Cloudinary React SDK
+import { Image } from "cloudinary-react"; 
 import { API_URL, CLOUD_NAME } from "../../../constants/constants";
 import useStyles from "./style";
 import AdminNav from "../../../components/admin-Nav";
@@ -327,6 +327,7 @@ const TemporaryShopDashboard = () => {
             </Typography>
 
             <TextField
+              style={{ width: "90%" }}
               name="stallID"
               type="hidden"
               value={stallId}
@@ -334,6 +335,7 @@ const TemporaryShopDashboard = () => {
             />
             {errors.stallID && <p style={{ color: "red" }}>{errors.stallID}</p>}
             <TextField
+              style={{ width: "90%" }}
               name="stallName"
               label="Stall Name"
               value={formData.stallName}
@@ -343,6 +345,7 @@ const TemporaryShopDashboard = () => {
               <p style={{ color: "red" }}>{errors.stallName}</p>
             )}
             <TextField
+              style={{ width: "90%" }}
               name="stallDescription"
               label="Stall Description"
               value={formData.stallDescription}
@@ -353,6 +356,7 @@ const TemporaryShopDashboard = () => {
             )}
 
             <TextField
+              style={{ width: "90%" }}
               name="ownerID"
               label="Owner ID"
               value={formData.ownerID}
@@ -369,6 +373,7 @@ const TemporaryShopDashboard = () => {
               <p style={{ color: "red" }}>{errors.stallImage}</p>
             )}
             <Button
+              style={{ width: "70%" }}
               type="submit"
               variant="contained"
               color="primary"
@@ -377,6 +382,7 @@ const TemporaryShopDashboard = () => {
               Submit
             </Button>
             <Button
+              style={{ width: "70%" }}
               type="button"
               onClick={handleClose}
               variant="contained"

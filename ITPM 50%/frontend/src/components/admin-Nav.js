@@ -24,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
+  drawer: {
+    width: drawerWidth,
+    backgroundColor: "#f0f0f0", // Background color for the sidebar
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    backgroundColor: "#f0f0f0", // Background color for the sidebar
+  },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
@@ -88,16 +96,14 @@ const AdminNav = () => {
               }}
             />
           </div>
-          <div className="col">
-            <h6
+          <div className="col mt-2">
+            <h3
               style={{
-                fontSize: "20px",
-                padding: "10px",
                 color: "blue",
               }}
             >
               I T P Mall
-            </h6>
+            </h3>
           </div>
         </div>
         <Divider />
@@ -132,12 +138,7 @@ const AdminNav = () => {
             </ListItemIcon>
             <ListItemText primary="Temporary shops" />
           </ListItem>
-          <ListItem button component={Link} to="/event_table">
-            <ListItemIcon>
-              <CakeIcon style={{ color: "blue" }} />
-            </ListItemIcon>
-            <ListItemText primary="Events" />
-          </ListItem>
+          
           <ListItem button component={Link} to="/order/home">
             <ListItemIcon>
               <DashboardIcon style={{ color: "blue" }} />

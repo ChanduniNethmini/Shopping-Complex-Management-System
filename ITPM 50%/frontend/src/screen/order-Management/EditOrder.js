@@ -3,6 +3,8 @@ import axios from "axios";
 import swal from "sweetalert";
 import "./myStyles.css";
 import { useParams } from "react-router-dom";
+import AdminNav from '../../components/admin-Nav';
+import "./order.css";
 
 const EditOrder = () => {
   const [formData, setFormData] = useState({
@@ -61,6 +63,7 @@ const EditOrder = () => {
 
   return (
     <div>
+      <AdminNav />
       <div className="container">
         <br />
         <div style={{ fontSize: "15px" }}>
@@ -82,7 +85,7 @@ const EditOrder = () => {
                   >
                     Order Detail Edit Form{" "}
                   </h1>
-                  <form className="needs-validation">
+                  <form  className="needs-validation">
                     <div
                       className="form-group"
                       style={{ marginBottom: "15px" }}

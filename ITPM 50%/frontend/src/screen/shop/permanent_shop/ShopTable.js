@@ -189,9 +189,10 @@ const PermanentShopDashboard = () => {
 
             {open &&
                 <div className={classes.form}>
-                    <Typography variant="h5">{id ? "Update Shop" : "Add New Shop"}</Typography>
+                    <Typography variant="h5" style={{ fontWeight: 'bold', fontStyle: 'italic' }}>{id ? "Update Shop" : "Add New Shop"}</Typography>
                     <form className={classes.form} noValidate autoComplete="off">
                         <TextField
+                            style={{ width: "90%" }}
                             name="shopID"
                             label="Shop ID"
                             value={formData.shopID}
@@ -199,6 +200,7 @@ const PermanentShopDashboard = () => {
                         />
                         {errors.shopID && <p style={{ color: "red" }}>{errors.shopID}</p>}
                         <TextField
+                            style={{ width: "90%" }}
                             name="shopName"
                             label="Shop Name"
                             value={formData.shopName}
@@ -206,6 +208,7 @@ const PermanentShopDashboard = () => {
                         />
                         {errors.shopName && <p style={{ color: "red" }}>{errors.shopName}</p>}
                         <TextField
+                            style={{ width: "90%" }}
                             name="floor"
                             label="Floor"
                             value={formData.floor}
@@ -213,6 +216,7 @@ const PermanentShopDashboard = () => {
                         />
                         {errors.floor && <p style={{ color: "red" }}>{errors.floor}</p>}
                         <TextField
+                            style={{ width: "90%" }}
                             name="ownerID"
                             label="Owner ID"
                             value={formData.ownerID}
@@ -222,10 +226,10 @@ const PermanentShopDashboard = () => {
                          
                         <ImageUpload handleUpload={handleUpload} url={url} setUrl={setUrl}/>
                         {errors.imageUrl && <p style={{ color: "red" }}>{errors.imageUrl}</p>}
-                        <Button type="submit" variant="contained" color="primary" onClick={id ? handleUpdate : handleSubmit}>
+                        <Button style={{ width: "70%" }} type="submit" variant="contained" color="primary" onClick={id ? handleUpdate : handleSubmit}>
                             Submit
                         </Button>
-                        <Button type="button" onClick={handleClose} variant="contained" color="secondary">
+                        <Button style={{ width: "70%" }} type="button" onClick={handleClose} variant="contained" color="secondary">
                             Cancel
                         </Button>
                     </form>

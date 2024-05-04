@@ -132,13 +132,13 @@ const AdminNav = () => {
             </ListItemIcon>
             <ListItemText primary="Permanent shops" />
           </ListItem>
-          <ListItem button component={Link} to="/temporyshop_table">
+          <ListItem button component={Link} to="/meetAtMallHome">
             <ListItemIcon>
               <StorefrontIcon style={{ color: "blue" }} />
             </ListItemIcon>
-            <ListItemText primary="Temporary shops" />
+            <ListItemText primary="Other Orders" />
           </ListItem>
-          
+
           <ListItem button component={Link} to="/order/home">
             <ListItemIcon>
               <DashboardIcon style={{ color: "blue" }} />
@@ -151,7 +151,7 @@ const AdminNav = () => {
             </ListItemIcon>
             <ListItemText primary="Item Table" />
           </ListItem>
-          <ListItem button component={Link} to="/login">
+          <ListItem button component={Link} to="/signin">
             <ListItemIcon>
               <MeetingRoom style={{ color: "blue" }} />
             </ListItemIcon>

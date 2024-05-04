@@ -2,23 +2,27 @@ import React, { useEffect, useState, useRef } from "react";
 import QRCode from "react-qr-code";
 import { toCanvas } from "qrcode";
 import "./meetAtMall.css";
+import axios from "axios";
+import swal from "sweetalert";
 
 const MeetAtMall = () => {
   const [cartTotal, setCartTotal] = useState(0);
-  const [qrData, setQrData] = useState(""); // This will hold the QR code data
-  const [cartItems, setCartItems] = useState([]); // Correctly initialize cartItems state
-  const qrRef = useRef(null); // Reference to the QR code for downloading
-  const [date, setDate] = useState(""); // User input for date
+  const [qrData, setQrData] = useState("");
+  const [cartItems, setCartItems] = useState([]);
+  const qrRef = useRef(null);
+  const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [nic, setNic] = useState("");
+  const [saveStatus, setSaveStatus] = useState(null);
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
     if (cartData && cartData.items) {
       const total = calculateCartTotal(cartData.items);
       setCartTotal(total);
-      setCartItems(cartData.items); // Set the cartItems state
+      setCartItems(cartData.items);
     }
-  }, []); // Empty dependency array to ensure this effect runs only once on component mount
+  }, []);
 
   const calculateCartTotal = (items) => {
     let total = 0;
@@ -28,18 +32,29 @@ const MeetAtMall = () => {
     return total.toFixed(2);
   };
 
-  const generateQrData = () => {
+  const generateQrData = async () => {
     const qrInfo = {
-      date: date, // Include user-supplied date
-      time: time, // Include user-supplied time
-      cartTotal: cartTotal, // Cart total
+      date: date,
+      time: time,
+      nic: nic,
+      cartTotal: cartTotal,
       items: cartItems.map((item) => ({
         itemID: item.itemID,
         itemName: item.itemName,
         quantity: item.quantity,
       })),
     };
-    setQrData(JSON.stringify(qrInfo)); // Update QR data
+    const qrDataString = JSON.stringify(qrInfo);
+    setQrData(qrDataString);
+
+    try {
+      // POST the data to your backend
+      await axios.post("http://localhost:8070/meetAtMall/save", qrInfo);
+      setSaveStatus("success");
+    } catch (error) {
+      console.error("Error saving QR data:", error);
+      setSaveStatus("error");
+    }
   };
 
   const downloadQR = () => {
@@ -55,13 +70,18 @@ const MeetAtMall = () => {
         link.href = canvas.toDataURL("image/png");
         link.download = "qr_code.png";
         link.click();
+        swal(
+          "Order Placed Successfully",
+          "Please do your payment at the property",
+          "success"
+        );
       });
     }
   };
 
   const handleFormSubmit = (e) => {
-    e.preventDefault(); // Prevent page refresh
-    generateQrData(); // Generate the new QR data
+    e.preventDefault();
+    generateQrData();
   };
   const today = new Date();
   const tomorrow = new Date(today);
@@ -86,6 +106,15 @@ const MeetAtMall = () => {
             onChange={(e) => setDate(e.target.value)}
             className="inputstyle"
             min={minDate}
+          />
+        </div>
+        <div>
+          <label>NIC of Collector:</label>
+          <input
+            type="text"
+            value={nic}
+            onChange={(e) => setNic(e.target.value)}
+            className="inputstyle"
           />
         </div>
         <div>

@@ -92,6 +92,8 @@ import MeetAtMallPage from "./components/MeetAtMallPage";
 import GridPage from "./components/GridPage";
 import Stall from "./BookAStall/Stall";
 import TemporaryPage from "./components/TemporaryShop";
+import Grid from "./BookAStall/Grid";
+import MeetAtMallHome from "./MeetAtMall/MeetAtMallHome";
 
 export const UserContext = createContext();
 
@@ -137,7 +139,7 @@ const Routing = () => {
       <Route path="/slider" element={<CardDeals />} />
       <Route path="/customer" element={<CustomerDashBoard />} />
       <Route path="/shop_dashboard" element={<PermenentShopHome />} />
-      <Route path="/_dashboadminard" element={<AdminDashboard />} />
+      <Route path="/admin-dashboard" element={<AdminDashboard />} />
       <Route path="/shop" element={<ShopPage />} />
       <Route path="/cart" element={<CartViewPage />} />
       <Route path="/order/home" element={<HomeOrder />} />
@@ -152,14 +154,7 @@ const Routing = () => {
           </ProtectedRoute>
         }
       />
-      <Route
-        path="/order"
-        element={
-          
-            <OrderPage />
-          
-        }
-      />
+      <Route path="/order" element={<OrderPage />} />
       <Route
         path="/meetAtMall"
         element={
@@ -183,6 +178,7 @@ const Routing = () => {
       <Route path="/event_home" element={<InteractiveMallEventHomePage />} />
       <Route path="/item_table" element={<ItemHome />} />
       <Route path="/item/:id" element={<ItemView />} />
+      <Route path="/meetAtMallHome" element={<MeetAtMallHome />} />
     </Routes>
   );
 };

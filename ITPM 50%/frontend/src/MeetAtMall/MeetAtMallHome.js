@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-import swal from "sweetalert";
-import "./myStyles.css";
 import jsPdf from "jspdf";
 import "jspdf-autotable";
-import AdminNav from "../../components/admin-Nav";
+import AdminNav from "../components/admin-Nav";
 
-class HomeOrder extends Component {
+class MeetAtMallHome extends Component {
   constructor(props) {
     super(props);
 
@@ -19,7 +17,7 @@ class HomeOrder extends Component {
   }
 
   retrievePosts() {
-    axios.get("http://localhost:8070/orders").then((res) => {
+    axios.get("http://localhost:8070/meetAtMall").then((res) => {
       if (res.data.success) {
         this.setState({
           posts: res.data.existingPosts,
@@ -29,37 +27,15 @@ class HomeOrder extends Component {
     });
   }
 
-  onDelete = (id) => {
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this data again!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        axios.delete(`http://localhost:8070/order/delete/${id}`).then((res) => {
-          swal("Deleted Successful", "Order is removed", "success");
-
-          this.retrievePosts();
-        });
-      } else {
-        swal("Your data is safe!");
-      }
-    });
-  };
-
   filterData(posts, searchKey) {
-    const result = posts.filter((post) =>
-      post.name.toLowerCase().includes(searchKey)
-    );
+    const result = posts.filter((post) => post.nic.includes(searchKey));
     this.setState({ posts: result });
   }
 
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:8070/orders").then((res) => {
+    axios.get("http://localhost:8070/meetAtMall").then((res) => {
       if (res.data.success) {
         this.filterData(res.data.existingPosts, searchKey);
       }
@@ -87,7 +63,7 @@ class HomeOrder extends Component {
     });
 
     // Save the pdf
-    doc.save("Order Details.pdf");
+    doc.save("Other Order Details.pdf");
   };
 
   render() {
@@ -108,7 +84,7 @@ class HomeOrder extends Component {
           <div className="text-center">
             <h2 className="adminletter" style={{ fontSize: "30px" }}>
               {" "}
-              Order Summary{" "}
+              Other Order Summary{" "}
             </h2>
           </div>
           <div className="col-md-6 mb-4">
@@ -132,55 +108,40 @@ class HomeOrder extends Component {
             <thead>
               <tr>
                 <th scope="col">Order Index</th>
-                <th scope="col">Customer Name</th>
-                <th scope="col">Contact Number</th>
-                <th scope="col">Order Date</th>
-                <th scope="col">Status</th>
+                <th scope="col">Customer NIC</th>
+                <th scope="col">Collecting Date</th>
+                <th scope="col">Collecting Time</th>
                 <th scope="col">Order Total(LKR)</th>
-                <th className="button-cell" scope="col">
-                  action
-                </th>
+                <th scope="col">Items Ordered</th>
               </tr>
             </thead>
             <tbody>
               {this.state.posts.map((posts, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
+                  <td>{posts.nic}</td>
+                  <td>{posts.date}</td>
+                  <td>{posts.time}</td>
+                  <td>{posts.cartTotal}</td>
                   <td>
-                    <a
-                      href={`/order/post/${posts._id}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      {posts.name}
-                    </a>
-                  </td>
-                  <td>{posts.contactNo}</td>
-                  <td className="button-cell">{posts.orderDate}</td>
-                  <td className="button-cell">{posts.status}</td>
-                  <td className="button-cell">{posts.cartTotal}</td>
-
-                  <td className="button-cell">
-                    <a
-                      className="btn btn-primary"
-                      href={`/order/post/${posts._id}`}
-                    >
-                      <i className="fas fa-eye"></i> View
-                    </a>
-                    &nbsp;
-                    <a
-                      className="btn btn-warning"
-                      href={`/order/update/${posts._id}`}
-                    >
-                      <i className="fas fa-edit"></i> Edit
-                    </a>
-                    &nbsp;
-                    <a
-                      className="btn btn-danger"
-                      href="#"
-                      onClick={() => this.onDelete(posts._id)}
-                    >
-                      <i className="fas fa-trash-alt"></i> Delete
-                    </a>
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Item ID</th>
+                          <th>Item Name</th>
+                          <th>Quantity</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {posts.items.map((item, itemIndex) => (
+                          <tr key={itemIndex}>
+                            <td>{item.itemID}</td>
+                            <td>{item.itemName}</td>
+                            <td>{item.quantity}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </td>
                 </tr>
               ))}
@@ -213,4 +174,4 @@ class HomeOrder extends Component {
     );
   }
 }
-export default HomeOrder;
+export default MeetAtMallHome;

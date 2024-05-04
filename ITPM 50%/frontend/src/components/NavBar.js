@@ -7,9 +7,7 @@ export default class NavBar extends Component {
       <div>
         <div className="row">
           <div className="col-9" style={{ letterSpacing: "12px" }}>
-            <marquee direction="left">
-            Innovative Trade Plaza Mall
-            </marquee>
+            <marquee direction="left">Innovative Trade Plaza Mall</marquee>
           </div>
           <div className="col-3">Need Help? Call Us: (+94) 11111111</div>
           <hr />
@@ -17,7 +15,10 @@ export default class NavBar extends Component {
 
         <NavBar2 />
 
-        <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#ff5733" }}>
+        <nav
+          className="navbar navbar-expand-lg navbar-light"
+          style={{ backgroundColor: "#d9dbde" }}
+        >
           <a className="navbar-brand" href="#">
             Home
           </a>
@@ -39,17 +40,17 @@ export default class NavBar extends Component {
                   Stores
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item active">
                 <a className="nav-link" href="/temporyshop_home">
                   Stalls
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item active">
                 <a className="nav-link" href="/grid">
                   Book a stall
                 </a>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown active">
                 <a
                   className="nav-link dropdown-toggle"
                   href="#"

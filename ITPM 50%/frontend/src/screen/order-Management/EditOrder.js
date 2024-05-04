@@ -3,7 +3,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import "./myStyles.css";
 import { useParams } from "react-router-dom";
-import AdminNav from '../../components/admin-Nav';
+import AdminNav from "../../components/admin-Nav";
 import "./order.css";
 
 const EditOrder = () => {
@@ -85,7 +85,7 @@ const EditOrder = () => {
                   >
                     Order Detail Edit Form{" "}
                   </h1>
-                  <form  className="needs-validation">
+                  <form className="needs-validation">
                     <div
                       className="form-group"
                       style={{ marginBottom: "15px" }}
@@ -145,14 +145,21 @@ const EditOrder = () => {
                       <label style={{ marginBottom: "5px" }} className="topic">
                         Status
                       </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="status"
-                        placeholder="pending"
-                        value={formData.status}
-                        onChange={handleInputChange}
-                      />
+                      <div
+                        className="form-group"
+                        style={{ marginBottom: "15px" }}
+                      >
+                        <select
+                          className="form-control"
+                          name="status"
+                          value={formData.status}
+                          onChange={handleInputChange}
+                        >
+                          <option value="pending">Pending</option>
+                          <option value="delivered">Delivered</option>
+                          <option value="dispatched">Dispatched</option>
+                        </select>
+                      </div>
                     </div>
 
                     <br />

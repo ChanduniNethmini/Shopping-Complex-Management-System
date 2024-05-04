@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Tooltip } from "react-tooltip"; // Import the correct component
 import "./stall.css";
 
 const Stall = ({ status, onClick, price }) => {
-  const [showTooltip, setShowTooltip] = useState(false);
-  console.log(price);
   const getColor = () => {
     switch (status) {
       case "booked":
@@ -14,34 +13,34 @@ const Stall = ({ status, onClick, price }) => {
         return "green";
     }
   };
-  const handleMouseEnter = () => {
-    setShowTooltip(true);
-  };
 
-  const handleMouseLeave = () => {
-    setShowTooltip(false);
-  };
   return (
-    <div
-      className="stall"
-      style={{
-        backgroundColor: getColor(),
-        width: "50px",
-        height: "50px",
-        border: "1px solid black",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        cursor: status === "booked" ? "not-allowed" : "pointer",
-        position: "relative",
-      }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={
-        status === "booked" ? () => alert("This stall is booked.") : onClick
-      }
-    >
-      {showTooltip && <div className="tooltip">{`Price: ${price}`}</div>}
+    <div>
+      <div
+        className="stall"
+        style={{
+          backgroundColor: getColor(),
+          width: "50px",
+          height: "50px",
+          border: "1px solid black",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          cursor: status === "booked" ? "not-allowed" : "pointer",
+        }}
+        data-tooltip-id="stall-tooltip"
+        data-tooltip-content={`Price: Rs. ${price}`} // Tooltip content
+        onClick={
+          status === "booked" ? () => alert("This stall is booked.") : onClick
+        }
+      ></div>
+
+      <Tooltip
+        id="stall-tooltip" // Matches the data-tooltip-id
+        place="top"
+        type="dark"
+        effect="solid"
+      />
     </div>
   );
 };

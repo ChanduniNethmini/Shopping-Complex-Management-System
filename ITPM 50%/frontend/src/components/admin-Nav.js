@@ -151,6 +151,12 @@ const AdminNav = () => {
             </ListItemIcon>
             <ListItemText primary="Item Table" />
           </ListItem>
+          <ListItem button component={Link} to="/bookAStallHome">
+            <ListItemIcon>
+              <StoreIcon style={{ color: "blue" }} />
+            </ListItemIcon>
+            <ListItemText primary="Booked Stall List" />
+          </ListItem>
           <ListItem button component={Link} to="/signin">
             <ListItemIcon>
               <MeetingRoom style={{ color: "blue" }} />

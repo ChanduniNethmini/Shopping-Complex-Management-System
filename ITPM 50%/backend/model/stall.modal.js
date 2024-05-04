@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
 const stallSchema = new mongoose.Schema({
+  stallID: {
+    type: Number,
+  },
   status: { type: String, default: "available" },
 });
 

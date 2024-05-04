@@ -13,7 +13,6 @@ const Grid = () => {
     const columnIndex = index % 9; // 9 columns
     if (columnIndex < 3) {
       return 150000;
-
     } else if (columnIndex < 6) {
       return 100000;
     } else {

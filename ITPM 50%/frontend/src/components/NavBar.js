@@ -40,11 +40,11 @@ export default class NavBar extends Component {
                   Stores
                 </a>
               </li>
-              <li className="nav-item active">
+              {/* <li className="nav-item active">
                 <a className="nav-link" href="/temporyshop_home">
                   Stalls
                 </a>
-              </li>
+              </li> */}
               <li className="nav-item active">
                 <a className="nav-link" href="/grid">
                   Book a stall

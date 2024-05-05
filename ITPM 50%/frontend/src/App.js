@@ -94,6 +94,7 @@ import Stall from "./BookAStall/Stall";
 import TemporaryPage from "./components/TemporaryShop";
 import Grid from "./BookAStall/Grid";
 import MeetAtMallHome from "./MeetAtMall/MeetAtMallHome";
+import HomeProductShops from "./screen/cart/HomeProductShops";
 
 export const UserContext = createContext();
 
@@ -146,6 +147,7 @@ const Routing = () => {
       <Route path="/order/update/:id" element={<EditOrder />} />
       <Route path="/order/post/:id" element={<OrderPost />} />
       <Route path="/order/report" element={<OrderReport />} />
+      <Route path="/shop/:id" element={<HomeProductShops />} />
       <Route
         path="/profile"
         element={

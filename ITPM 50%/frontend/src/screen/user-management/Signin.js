@@ -40,7 +40,7 @@ export default function SignIn() {
           dispatch({ type: "USER", payload: data.user });
           M.toast({ html: "Signedin successfully", classes: "green dark" });
           if (email === "admin@gmail.com") {
-            navigate("/admin_dashboard"); // Navigate to admin dashboard
+            navigate("/admin-dashboard"); // Navigate to admin dashboard
           } else {
             navigate("/"); // Navigate to home or another page for regular users
           }
@@ -51,12 +51,18 @@ export default function SignIn() {
       });
   };
   return (
-    <div className="back center-align" > {/* Apply center-align class to center the container */}
+    <div className="back center-align">
+      {" "}
+      {/* Apply center-align class to center the container */}
       <div className="row">
-        <div className="col s12 m8 offset-m2"> {/* Adjust width here */}
+        <div className="col s12 m8 offset-m2">
+          {" "}
+          {/* Adjust width here */}
           <div className="bCard">
             <div data-testid="sign-1" className="card lCard input-field ">
-              <h3><b>SignIn</b></h3>
+              <h3>
+                <b>SignIn</b>
+              </h3>
               <input
                 type="email"
                 className="form-control mt-3"
@@ -79,7 +85,6 @@ export default function SignIn() {
               >
                 LOGIN
               </button>
-
 
               <br />
               <Link to="/signup">Don't have an account ?</Link>

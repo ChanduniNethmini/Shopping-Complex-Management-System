@@ -3,6 +3,7 @@ import ShopProducts from "./ShopProducts";
 import "./productstyles.css";
 import axios from "axios";
 import { API_URL } from "../../constants/constants";
+import NavBar from "../../components/NavBar";
 
 const HomeProductShops = () => {
   const [items, setItems] = useState([]);
@@ -29,6 +30,7 @@ const HomeProductShops = () => {
 
   return (
     <div>
+      <NavBar />
       {/* Handle if shopId is not valid */}
       {shopId ? (
         <section className="container">

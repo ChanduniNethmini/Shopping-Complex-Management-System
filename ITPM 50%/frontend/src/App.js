@@ -95,6 +95,7 @@ import TemporaryPage from "./components/TemporaryShop";
 import Grid from "./BookAStall/Grid";
 import MeetAtMallHome from "./MeetAtMall/MeetAtMallHome";
 import HomeProductShops from "./screen/cart/HomeProductShops";
+import BookAStallHome from "./BookAStall/BookAStallHome";
 
 export const UserContext = createContext();
 
@@ -181,6 +182,7 @@ const Routing = () => {
       <Route path="/item_table" element={<ItemHome />} />
       <Route path="/item/:id" element={<ItemView />} />
       <Route path="/meetAtMallHome" element={<MeetAtMallHome />} />
+      <Route path="/bookAStallHome" element={<BookAStallHome />} />
     </Routes>
   );
 };

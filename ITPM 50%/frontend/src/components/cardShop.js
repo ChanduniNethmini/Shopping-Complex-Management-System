@@ -24,10 +24,6 @@ export default function CardShop() {
         name: "Spa Ceylon",
         logo: "https://image.isu.pub/230818114412-9c6690a489e3dad4cd16c7566898c08c/jpg/page_1_thumb_large.jpg",
       },
-      {
-        name: "FOA",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJChzreeLkSgqlE_XVfx_IeQotu7HK7P1mM3mlHyAZFw&s",
-      },
     ],
     floor2: [
       {

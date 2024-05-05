@@ -4,6 +4,7 @@ import axios from "axios";
 import ColorKey from "./ColorKey";
 import "./stall.css";
 import swal from "sweetalert";
+import NavBar from "../components/NavBar";
 
 const Grid = () => {
   const [stalls, setStalls] = useState([]);
@@ -70,6 +71,7 @@ const Grid = () => {
 
   return (
     <div>
+      <NavBar />
       <br />
       <h4>Bookings are taken for the month of May </h4>
       <br />
@@ -113,7 +115,12 @@ const Grid = () => {
             ))}
           </div>
         </div>
-        <div className="col">
+        <div
+          className="col"
+          style={{
+            marginLeft: "70px",
+          }}
+        >
           <ColorKey />
           <button className="button" onClick={handleBookStalls}>
             Confirm Booking

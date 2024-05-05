@@ -9,6 +9,7 @@ const NavBar2 = () => {
   const handleLogout = () => {
     localStorage.clear(); // Clear local storage
     dispatch({ type: "CLEAR" }); // Reset user context
+    navigate("/");
   };
   const goToProfile = () => {
     navigate("/profile"); // Navigate to the profile page

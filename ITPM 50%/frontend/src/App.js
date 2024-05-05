@@ -135,9 +135,8 @@ const Routing = () => {
   }, []);
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} /> {/* Public route */}
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<Signup />} />
+      {/* <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<Signup />} /> */}
       <Route path="/slider" element={<CardDeals />} />
       <Route path="/customer" element={<CustomerDashBoard />} />
       <Route path="/shop_dashboard" element={<PermenentShopHome />} />

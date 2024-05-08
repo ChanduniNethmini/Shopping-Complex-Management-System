@@ -12,6 +12,8 @@ const ShopOwner = require("./routes/shopOwner-route");
 const StallSeeker = require("./routes/stallSeeker-route");
 const TemporaryShop = require("./routes/temporaryShop-route");
 
+const paymentRoutes = require("./routes/paymentgate");
+
 dotenv.config();
 const app = express();
 app.use(cors());
@@ -20,7 +22,6 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 8070;
 const MONGODB_URI = process.env.MONGODB_URI;
-
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true },)
     .then(() => {
@@ -34,6 +35,7 @@ mongoose.connection.once("open", () => {
     console.log("Database Synced");
 });
 
+// Routes for your existing endpoints
 app.use("/api/v0/cart", Cart);
 app.use("/api/v0/customer", Customer);
 app.use("/api/v0/event", Event);
@@ -42,6 +44,10 @@ app.use("/api/v0/item", Item);
 app.use("/api/v0/shopOwner", ShopOwner);
 app.use("/api/v0/stallSeeker", StallSeeker);
 app.use("/api/v0/temporaryShop", TemporaryShop);
+
+app.use("/api/v0", paymentRoutes);
+
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);

@@ -2,7 +2,7 @@ import React from "react";
 import { Tooltip } from "react-tooltip"; // Import the correct component
 import "./stall.css";
 
-const Stall = ({ status, onClick, price }) => {
+const Stall = ({ status, onClick, price, stallNumber }) => {
   const getColor = () => {
     switch (status) {
       case "booked":
@@ -33,7 +33,9 @@ const Stall = ({ status, onClick, price }) => {
         onClick={
           status === "booked" ? () => alert("This stall is booked.") : onClick
         }
-      ></div>
+      >
+        {stallNumber}
+      </div>
 
       <Tooltip
         id="stall-tooltip" // Matches the data-tooltip-id

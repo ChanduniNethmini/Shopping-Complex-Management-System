@@ -3,7 +3,7 @@ import axios from "axios";
 import jsPdf from "jspdf";
 import "jspdf-autotable";
 import AdminNav from "../components/admin-Nav";
-
+import swal from "sweetalert";
 class BookAStallHome extends Component {
   constructor(props) {
     super(props);
@@ -37,6 +37,25 @@ class BookAStallHome extends Component {
         console.error("Error fetching posts:", error);
       });
   }
+  onDelete = (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this data again!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios.delete(`http://localhost:8070/stalls/${id}`).then((res) => {
+          swal("Changed stall status", "Now the stall is available", "success");
+
+          this.retrievePosts();
+        });
+      } else {
+        swal("Your data is safe!");
+      }
+    });
+  };
 
   filterData(posts, searchKey) {
     const result = posts.filter((post) =>
@@ -121,14 +140,28 @@ class BookAStallHome extends Component {
             <thead>
               <tr>
                 <th scope="col">Stall ID</th>
+                <th scope="col">Stall Number</th>
                 <th scope="col">Status</th>
+                <th className="button-cell" scope="col">
+                  action
+                </th>
               </tr>
             </thead>
             <tbody>
               {this.state.posts.map((posts, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
+                  <td>...{posts._id.substring(posts._id.length - 5)}</td>
                   <td>{posts.status}</td>
+                  <td className="button-cell">
+                    <a
+                      className="btn btn-danger"
+                      href="#"
+                      onClick={() => this.onDelete(posts._id)}
+                    >
+                      <i className="fas fa-trash-alt"></i> Make it Availabe
+                    </a>
+                  </td>
                 </tr>
               ))}
             </tbody>

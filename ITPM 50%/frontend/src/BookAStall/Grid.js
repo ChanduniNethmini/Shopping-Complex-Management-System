@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Stall from "./Stall";
 import axios from "axios";
 import ColorKey from "./ColorKey";
 import "./stall.css";
 import swal from "sweetalert";
 import NavBar from "../components/NavBar";
+import QRCode from "react-qr-code";
 
 const Grid = () => {
   const [stalls, setStalls] = useState([]);
   const [selectedStalls, setSelectedStalls] = useState([]);
+  const qrRef = useRef(null);
+  const [qrData, setQrData] = useState("");
 
   const getPrice = (index) => {
     const columnIndex = index % 9; // 9 columns
@@ -24,7 +27,11 @@ const Grid = () => {
   useEffect(() => {
     // Fetch initial stall data from the server
     axios.get("http://localhost:8070/stalls").then((response) => {
-      setStalls(response.data);
+      const stallsWithNumbers = response.data.map((stall, index) => ({
+        ...stall,
+        stallNumber: index + 1,
+      }));
+      setStalls(stallsWithNumbers);
     });
   }, []);
 
@@ -42,6 +49,7 @@ const Grid = () => {
 
     setStalls(updatedStalls);
   };
+
   const handleBookStalls = () => {
     const updatedStalls = [...stalls];
 
@@ -52,6 +60,16 @@ const Grid = () => {
         stall.status = "booked";
       }
     });
+
+    const qrInfo = selectedStalls.map((stallId) => {
+      const stall = stalls.find((s) => s._id === stallId);
+      return {
+        stallNumber: stall.stallNumber,
+        stallId,
+        price: getPrice(stall.stallNumber - 1),
+      };
+    });
+    setQrData(JSON.stringify(qrInfo));
 
     // Save changes to the server
     axios
@@ -110,6 +128,7 @@ const Grid = () => {
                 key={stall._id}
                 status={stall.status}
                 price={getPrice(index)}
+                stallNumber={stall.stallNumber}
                 onClick={() => handleStallClick(index)}
               />
             ))}
@@ -125,6 +144,20 @@ const Grid = () => {
           <button className="button" onClick={handleBookStalls}>
             Confirm Booking
           </button>
+
+          {qrData && (
+            <div
+              style={{
+                marginLeft: "-200px",
+              }}
+            >
+              <br />
+              <QRCode value={qrData} />
+              <br />
+            </div>
+          )}
+          <br />
+          <br />
         </div>
       </div>
     </div>
